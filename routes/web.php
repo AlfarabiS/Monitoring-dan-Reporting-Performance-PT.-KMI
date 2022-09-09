@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\OnGoingController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,16 +14,10 @@ use App\Http\Controllers\LoginController;
 |
 */
 
-Route::get('/', function () {
-    return view('/auth/login',[]);
-});
+Route::get('/login', [LoginController::class, 'index']);
+Route::post('/login', [LoginController::class, 'authenticate']);
 
-Route::get('/tracking', function () {
-    return view('/admin/tracking',[
-        'user'=>'Alfarabi',
-        'judul'=>'Tracking'
-    ]);
-});
+Route::get('/tracking', [OnGoingController::class, 'index']);
 
 
 Route::get('/report', function () {
@@ -41,6 +36,5 @@ Route::get('/checkout', function () {
     return view('/user/checkout',[]);
 });
 
-Route::get('/login', [LoginController::class, 'index']);
-Route::post('/login', [LoginController::class, 'authenticate']);
+
 

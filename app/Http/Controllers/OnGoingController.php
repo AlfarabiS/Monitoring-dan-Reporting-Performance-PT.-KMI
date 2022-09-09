@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\on_going;
-use App\Models\User;
-use App\Http\Requests\Storeon_goingRequest;
-use App\Http\Requests\Updateon_goingRequest;
+use App\Models\OnGoing;
+use App\Http\Requests\StoreOnGoingRequest;
+use App\Http\Requests\UpdateOnGoingRequest;
 
 class OnGoingController extends Controller
 {
@@ -16,7 +15,11 @@ class OnGoingController extends Controller
      */
     public function index()
     {
-        
+        //
+        return view('/admin/tracking',[
+            'user'=>'Alfarabi',
+            'judul'=>'Tracking'
+        ]);
     }
 
     /**
@@ -32,10 +35,10 @@ class OnGoingController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\Storeon_goingRequest  $request
+     * @param  \App\Http\Requests\StoreOnGoingRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Storeon_goingRequest $request)
+    public function store(StoreOnGoingRequest $request)
     {
         //
     }
@@ -43,10 +46,10 @@ class OnGoingController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\on_going  $on_going
+     * @param  \App\Models\OnGoing  $onGoing
      * @return \Illuminate\Http\Response
      */
-    public function show(on_going $on_going)
+    public function show(OnGoing $onGoing)
     {
         //
     }
@@ -54,10 +57,10 @@ class OnGoingController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\on_going  $on_going
+     * @param  \App\Models\OnGoing  $onGoing
      * @return \Illuminate\Http\Response
      */
-    public function edit(on_going $on_going)
+    public function edit(OnGoing $onGoing)
     {
         //
     }
@@ -65,11 +68,11 @@ class OnGoingController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\Updateon_goingRequest  $request
-     * @param  \App\Models\on_going  $on_going
+     * @param  \App\Http\Requests\UpdateOnGoingRequest  $request
+     * @param  \App\Models\OnGoing  $onGoing
      * @return \Illuminate\Http\Response
      */
-    public function update(Updateon_goingRequest $request, on_going $on_going)
+    public function update(UpdateOnGoingRequest $request, OnGoing $onGoing)
     {
         //
     }
@@ -77,10 +80,10 @@ class OnGoingController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\on_going  $on_going
+     * @param  \App\Models\OnGoing  $onGoing
      * @return \Illuminate\Http\Response
      */
-    public function destroy(on_going $on_going)
+    public function destroy(OnGoing $onGoing)
     {
         //
     }

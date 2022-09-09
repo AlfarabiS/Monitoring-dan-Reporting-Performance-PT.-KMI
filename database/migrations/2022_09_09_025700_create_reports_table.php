@@ -15,10 +15,7 @@ return new class extends Migration
     {
         Schema::create('reports', function (Blueprint $table) {
             $table->id();
-            $table->string('user_nik');
-            $table->string('process_id');
-            $table->time('time_total');
-            $table->integer('Qty');
+            $table->foreignId('NIK')->constrained('users');
             $table->timestamps();
         });
     }

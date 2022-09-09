@@ -15,9 +15,8 @@ return new class extends Migration
     {
         Schema::create('on_goings', function (Blueprint $table) {
             $table->id();
-            $table->string('user_nik');
-            $table->string('process_id');
-            $table->time('time_total')->nullable;
+            $table->foreignId('NIK')->constrained('users');
+            $table->foreignId('process_id');
             $table->timestamps();
         });
     }

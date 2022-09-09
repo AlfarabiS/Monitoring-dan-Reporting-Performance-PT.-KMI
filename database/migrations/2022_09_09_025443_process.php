@@ -14,8 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('processes', function (Blueprint $table) {
-            $table->id();
-            $table->string('process_id');
+            $table->id('process_id');
             $table->string('process_name');
             $table->timestamps();
         });
