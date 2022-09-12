@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('NIK')->constrained('users');
             $table->foreignId('process_id');
+            $table->time('total_time');
             $table->timestamps();
         });
     }

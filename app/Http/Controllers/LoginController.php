@@ -22,8 +22,9 @@ class LoginController extends Controller
             return('Login Berhasil');
             // $request->session()->regenerate();
             
-            // return redirect()->intended('dashboard');
+            //  return redirect()->intended('dashboard');
         }
+        return('Login Gagal');
         
     }
 }

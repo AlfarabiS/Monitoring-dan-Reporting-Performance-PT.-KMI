@@ -17,7 +17,15 @@ use App\Http\Controllers\OnGoingController;
 Route::get('/login', [LoginController::class, 'index']);
 Route::post('/login', [LoginController::class, 'authenticate']);
 
+
 Route::get('/tracking', [OnGoingController::class, 'index']);
+
+Route::get('/dashboard', function(){
+    return view('/admin/report',[
+        'user'=>'Alfarabi',
+        'judul'=>'Report'
+    ]);
+});
 
 
 Route::get('/report', function () {
