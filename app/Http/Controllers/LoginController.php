@@ -19,12 +19,21 @@ class LoginController extends Controller
         ]);
 
         if (Auth::attempt($validated_request)) {
-            return('Login Berhasil');
-            // $request->session()->regenerate();
+            // return('Login Berhasil');
+            $request->session()->regenerate();
             
-            //  return redirect()->intended('dashboard');
+             return redirect()->intended('dashboard');
         }
-        return('Login Gagal');
-        
+        return back();        
+    }
+
+    public function logout(Request $request){
+        Auth::logout();
+ 
+        $request->session()->invalidate();
+     
+        $request->session()->regenerateToken();
+     
+        return redirect('/');
     }
 }

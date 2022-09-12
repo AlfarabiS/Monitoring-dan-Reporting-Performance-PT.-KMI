@@ -30,10 +30,14 @@
                      </a>
                   </li>
                   <li>
-                     <a href="#" class="flex items-center p-2 text-base font-normal rounded-lg text-white hover:bg-gray-700 dark:hover:bg-gray-700">
-                        
-                        <span class="flex-1 ml-3 whitespace-nowrap">Logout</span>
-                     </a>
+                     <form action="/logout" method="POST">
+                        @csrf
+                        <button class="w-full flex item-center p-2 text-base font-normal rounded-lg text-white hover:bg-gray-700 dark:hover:bg-gray-700">                       
+                           <span class="flex-1  whitespace-nowrap">
+                              Logout <i class=" fa fa-sign-out fa-2xs"></i>
+                           </span>
+                        </button>
+                     </form>
                   </li>
                   
                </ul>

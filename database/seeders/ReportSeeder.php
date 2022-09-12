@@ -2,8 +2,11 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Report;
+use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class ReportSeeder extends Seeder
 {
@@ -14,6 +17,7 @@ class ReportSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Report::factory(10)->create();
+        
     }
 }

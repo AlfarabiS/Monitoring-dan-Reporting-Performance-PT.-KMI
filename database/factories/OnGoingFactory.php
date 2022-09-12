@@ -16,8 +16,10 @@ class OnGoingFactory extends Factory
      */
     public function definition()
     {
-        return [
-            //
-        ];
+            return [
+                'NIK' => fake()->randomNumber(),
+                'process_id' => fake()->name(),
+                'total_time' => fake()->time()
+            ];
     }
 }

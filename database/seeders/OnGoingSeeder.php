@@ -2,8 +2,11 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\OnGoing;
+use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class OnGoingSeeder extends Seeder
 {
@@ -14,6 +17,6 @@ class OnGoingSeeder extends Seeder
      */
     public function run()
     {
-        //
+        OnGoing::factory(10)->create();
     }
 }

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\OnGoingController;
 /*
 |--------------------------------------------------------------------------
@@ -14,27 +15,18 @@ use App\Http\Controllers\OnGoingController;
 |
 */
 
-Route::get('/login', [LoginController::class, 'index']);
+Route::get('/login', [LoginController::class, 'index'])->name('login');
+Route::get('/', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'authenticate']);
+Route::post('/logout', [LoginController::class, 'logout']);
 
 
-Route::get('/tracking', [OnGoingController::class, 'index']);
+Route::get('/tracking', [OnGoingController::class, 'index'])->name('dashboard')->middleware('isAdmin');
+Route::get('/dashboard', [OnGoingController::class, 'index'])->name('dashboard')->middleware('isAdmin');
 
-Route::get('/dashboard', function(){
-    return view('/admin/report',[
-        'user'=>'Alfarabi',
-        'judul'=>'Report'
-    ]);
-});
+Route::get('/report', [ReportController::class, 'index'])->middleware('isAdmin');
 
 
-Route::get('/report', function () {
-    return view('/admin/report',[
-        'user'=>'Alfarabi',
-        'judul'=>'Report'
-    ]);
-    
-});
 
 Route::get('/user', function () {
     return view('/user/index',[]);

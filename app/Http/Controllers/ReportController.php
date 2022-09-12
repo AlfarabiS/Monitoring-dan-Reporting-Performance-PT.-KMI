@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Report;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreReportRequest;
 use App\Http\Requests\UpdateReportRequest;
 
@@ -16,6 +17,11 @@ class ReportController extends Controller
     public function index()
     {
         //
+            return view('/admin/report',[
+        'user'=>'Alfarabi',
+        'judul'=>'Report',
+        'Report' => Report::all()
+    ]);
     }
 
     /**

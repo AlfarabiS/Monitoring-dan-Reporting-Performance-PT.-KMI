@@ -18,7 +18,8 @@ class OnGoingController extends Controller
         //
         return view('/admin/tracking',[
             'user'=>'Alfarabi',
-            'judul'=>'Tracking'
+            'judul'=>'Tracking',
+            'OnGoing' => OnGoing::all()
         ]);
     }
 
@@ -51,7 +52,7 @@ class OnGoingController extends Controller
      */
     public function show(OnGoing $onGoing)
     {
-        //
+        
     }
 
     /**

@@ -17,7 +17,9 @@ class ReportFactory extends Factory
     public function definition()
     {
         return [
-            //
+                'NIK' => fake()->name(),
+                'performance' => fake()->numberBetween(1,10),
+         
         ];
     }
 }

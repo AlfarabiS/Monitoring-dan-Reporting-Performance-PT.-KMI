@@ -14,10 +14,15 @@
             <div class="flex flex-wrap">
                 <ul class="list-reset flex justify-between items-center">
                     <li>
-                        <a href="#" class="flex items-center px-2 text-base font-normal rounded-lg text-white hover:bg-gray-700 dark:hover:bg-gray-700">
-                           <span class="px-2">Log Out
-                            <i class=" fa fa-sign-out fa-2xs"></i></span>
-                        </a>
+                        <form action="/logout" method="POST">
+                            @csrf
+                            <button class="w-full flex p-2 text-base font-normal rounded-lg text-white hover:bg-gray-700 dark:hover:bg-gray-700">                       
+                               <span class="flex-1  whitespace-nowrap">
+                                Logout
+                                <i class=" fa fa-sign-out fa-2xs"></i></span>
+                            </span>
+                            </button>
+                         </form>
                      </li>
                                        
                 </ul>

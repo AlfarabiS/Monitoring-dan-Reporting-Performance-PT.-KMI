@@ -18,10 +18,12 @@ class UserFactory extends Factory
     public function definition()
     {
         return [
+            'NIK' => fake()->randomNumber(),
             'name' => fake()->name(),
             'email' => fake()->safeEmail(),
             'email_verified_at' => now(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'is_admin' => fake()->numberBetween(0,1),
             'remember_token' => Str::random(10),
         ];
     }
