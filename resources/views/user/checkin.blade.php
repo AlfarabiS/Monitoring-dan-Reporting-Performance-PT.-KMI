@@ -20,24 +20,25 @@
             </p>
         </div>
         <div class="flex items-center justify-center mt-5">
-            <form class="" action="#">
+            <form action="/user/checkin" method="POST">
+                @csrf
+                {{-- INPUT WAKTU OTOMATIS GETTIME BLM--}}
+                @foreach ($Processes as $item)
+                    <input  type="hidden" name="gudang_id" value="{{ $item->gudang_id }}">
+                @endforeach
                 <div class="mx-auto mb-3">
                     <label class=" font-semibold" for="proses">Proses</label>
                     <select name="proses" id="id_proses">
-                        <option value="proses1">proses1</option>
-                        <option value="proses2">proses2</option>
-                        <option value="proses3">proses3</option>
-                        <option value="proses4">proses4</option>
-                    </select>
-                </div>
+                            @foreach ($Processes as $process)
+                            <option value="{{ $process->process_id }}">{{ $process->process_name }}</option>
+                            {{-- <input type="hidden" name="gudang_id" value="{{ $process->gudang_id }}"> --}}
+                            @endforeach
+                        </select>
+                    </div>
                 <div class="flex items-center justify-center">
-                    <a href="/checkout">
                         <button type="submit" class="w-40 text-white bg-green-500 hover:bg-green-600 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 hover:scale-105 transition"> 
-                        <a href="/checkout">
-                            Check In
-                        </a>
-                        </button>
-                    </a>                        
+                            Check In         
+                        </button>            
                 </div> 
             </form>
         </div>

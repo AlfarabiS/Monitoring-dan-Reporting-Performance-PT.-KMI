@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Process;
 use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -16,8 +17,19 @@ class ProcessSeeder extends Seeder
      */
     public function run()
     {
+
+        // Process::factory(10)->create();
         DB::table('processes')->insert([
-            'process_name'=>Str::random('10')
+            'process_name'=> 'Proses FG',
+            'gudang_id'=> 'FG'
+        ]);
+        DB::table('processes')->insert([
+            'process_name'=> 'Proses RM',
+            'gudang_id'=> 'RM'
+        ]);
+        DB::table('processes')->insert([
+            'process_name'=> 'Proses PM',
+            'gudang_id'=> 'PM'
         ]);
 
     }

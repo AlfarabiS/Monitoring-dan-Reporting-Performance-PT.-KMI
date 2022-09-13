@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\OnGoing;
+use App\Models\Process;
+use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreOnGoingRequest;
 use App\Http\Requests\UpdateOnGoingRequest;
 
@@ -13,13 +18,46 @@ class OnGoingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+
+    public function fg()
     {
-        //
         return view('/admin/tracking',[
-            'user'=>'Alfarabi',
-            'judul'=>'Tracking',
-            'OnGoing' => OnGoing::all()
+            'ActiveUser' => Auth::user()->name,
+            'judul'=> 'Tracking',
+            'Users'=> User::where('is_admin','false')->get(),
+            'OnGoing' => OnGoing::join('users','on_goings.NIK','=','users.NIK')
+            ->join('warehouses','on_goings.gudang_id','=','warehouses.gudang_id')
+            ->join('processes','on_goings.process_id','=','processes.process_id')
+            ->get(),
+            'Processes' => Process::where('gudang_id', 'FG')->get()
+        ]);
+    }
+
+    public function rm()
+    {
+        return view('/admin/tracking',[
+            'ActiveUser' => Auth::user()->name,
+            'judul'=> 'Tracking',
+            'Users'=> User::where('is_admin','false')->get(),
+            'OnGoing' => OnGoing::join('users','on_goings.NIK','=','users.NIK')
+            ->join('warehouses','on_goings.gudang_id','=','warehouses.gudang_id')
+            ->join('processes','on_goings.process_id','=','processes.process_id')
+            ->get(),
+            'Processes' => Process::where('gudang_id', 'RM')->get()
+        ]);
+    }
+
+    public function pm()
+    {
+        return view('/admin/tracking',[
+            'ActiveUser' => Auth::user()->name,
+            'judul'=> 'Tracking',
+            'Users'=> User::where('is_admin','false')->get(),
+            'OnGoing' => OnGoing::join('users','on_goings.NIK','=','users.NIK')
+            ->join('warehouses','on_goings.gudang_id','=','warehouses.gudang_id')
+            ->join('processes','on_goings.process_id','=','processes.process_id')
+            ->get(),
+            'Processes' => Process::where('gudang_id', 'PM')->get()
         ]);
     }
 

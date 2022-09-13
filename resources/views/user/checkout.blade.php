@@ -16,6 +16,11 @@
     <div class="container px-10 py-10 bg-slate-200 mx-auto mt-36"> 
         <div class="flex items-center justify-center ">
             <p class="text-3xl font-bold">
+                {{ $proses }}
+            </p>
+        </div>
+        <div class="flex items-center justify-center ">
+            <p class="text-3xl font-bold">
                 00:00:00
             </p>
         </div>

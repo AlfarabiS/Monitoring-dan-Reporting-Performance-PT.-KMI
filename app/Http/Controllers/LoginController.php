@@ -9,7 +9,9 @@ class LoginController extends Controller
 {
     //
     public function index(){
-        return view('/auth/login');
+        return view('/auth/login',[
+            'judul'=>'Warehouse | KAMI'
+        ]);
     }
 
     public function authenticate(Request $request){

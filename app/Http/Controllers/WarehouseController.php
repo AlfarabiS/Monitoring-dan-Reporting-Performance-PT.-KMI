@@ -2,14 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
-use App\Models\Report;
-use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
-use App\Http\Requests\StoreReportRequest;
-use App\Http\Requests\UpdateReportRequest;
+use App\Models\Warehouse;
+use App\Http\Requests\StoreWarehouseRequest;
+use App\Http\Requests\UpdateWarehouseRequest;
 
-class ReportController extends Controller
+class WarehouseController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,12 +16,6 @@ class ReportController extends Controller
     public function index()
     {
         //
-            return view('/admin/report',[
-                'judul'=>'Report',
-                'Report' => Report::all(),
-                'ActiveUser' => Auth::user()->name,
-                'Users'=> User::where('is_admin','false')->get(),
-            ]);
     }
 
     /**
@@ -40,10 +31,10 @@ class ReportController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreReportRequest  $request
+     * @param  \App\Http\Requests\StoreWarehouseRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreReportRequest $request)
+    public function store(StoreWarehouseRequest $request)
     {
         //
     }
@@ -51,10 +42,10 @@ class ReportController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Report  $report
+     * @param  \App\Models\Warehouse  $warehouse
      * @return \Illuminate\Http\Response
      */
-    public function show(Report $report)
+    public function show(Warehouse $warehouse)
     {
         //
     }
@@ -62,10 +53,10 @@ class ReportController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Report  $report
+     * @param  \App\Models\Warehouse  $warehouse
      * @return \Illuminate\Http\Response
      */
-    public function edit(Report $report)
+    public function edit(Warehouse $warehouse)
     {
         //
     }
@@ -73,11 +64,11 @@ class ReportController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateReportRequest  $request
-     * @param  \App\Models\Report  $report
+     * @param  \App\Http\Requests\UpdateWarehouseRequest  $request
+     * @param  \App\Models\Warehouse  $warehouse
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateReportRequest $request, Report $report)
+    public function update(UpdateWarehouseRequest $request, Warehouse $warehouse)
     {
         //
     }
@@ -85,10 +76,10 @@ class ReportController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Report  $report
+     * @param  \App\Models\Warehouse  $warehouse
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Report $report)
+    public function destroy(Warehouse $warehouse)
     {
         //
     }

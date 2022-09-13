@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('processes', function (Blueprint $table) {
             $table->id('process_id');
             $table->string('process_name');
+            $table->string('gudang_id');
             $table->timestamps();
         });
     }

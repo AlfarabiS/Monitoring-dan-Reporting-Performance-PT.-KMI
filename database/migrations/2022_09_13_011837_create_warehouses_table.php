@@ -13,12 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('on_goings', function (Blueprint $table) {
+        Schema::create('warehouses', function (Blueprint $table) {
             $table->id();
-            $table->string('NIK');
-            $table->string('process_id');
             $table->string('gudang_id');
-            $table->time('total_time');
+            $table->string('gudang_name');
             $table->timestamps();
         });
     }
@@ -30,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('on_goings');
+        Schema::dropIfExists('warehouses');
     }
 };

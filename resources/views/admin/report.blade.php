@@ -25,7 +25,9 @@
             </tr>
             
             @endforeach  
-        
+            @foreach ($Users as $user)
+                
+            @endforeach
         </tbody>
     </table>
 </div>  
