@@ -16,6 +16,8 @@ return new class extends Migration
         Schema::create('reports', function (Blueprint $table) {
             $table->id();
             $table->string('NIK');
+            $table->string('process_id');
+            $table->string('gudang_id');
             $table->float('performance');
             $table->timestamps();
         });

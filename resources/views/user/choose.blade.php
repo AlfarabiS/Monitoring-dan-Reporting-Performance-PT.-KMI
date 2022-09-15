@@ -12,7 +12,7 @@
 
 </head>
 <body class="bg-slate-100">
-@include('layout.navbar1')
+@include('layout.user_navbar')
     <div class="container px-10 py-10 bg-slate-200 mx-auto mt-36"> 
         <div class="flex items-center justify-center ">
             <form action="/user/fg">

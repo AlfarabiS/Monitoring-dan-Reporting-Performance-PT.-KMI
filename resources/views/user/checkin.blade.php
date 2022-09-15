@@ -12,23 +12,38 @@
 
 </head>
 <body class="bg-slate-100">
-@include('layout.navbar1')
+@include('layout.user_navbar')
+
+<script type="text/javascript">
+
+        var today = new Date();
+        var waktu = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+        var testingan = "something"
+        //document.getElementById("time-start").value = testingan; 
+
+        document.getElementById(waktu).innerHTML = waktu;
+
+    // body.addEventListener("load",timeStart)
+</script>
+
+
     <div class="container px-10 py-10 bg-slate-200 mx-auto mt-36"> 
         <div class="flex items-center justify-center ">
-            <p class="text-3xl font-bold">
-                00:00:00
+            <p class="text-3xl font-bold" id="waktu">
+
             </p>
         </div>
         <div class="flex items-center justify-center mt-5">
             <form action="/user/checkin" method="POST">
                 @csrf
                 {{-- INPUT WAKTU OTOMATIS GETTIME BLM--}}
+                <input type="hidden" id="time-start" name="time_start" value="" />
                 @foreach ($Processes as $item)
                     <input  type="hidden" name="gudang_id" value="{{ $item->gudang_id }}">
                 @endforeach
                 <div class="mx-auto mb-3">
                     <label class=" font-semibold" for="proses">Proses</label>
-                    <select name="proses" id="id_proses">
+                    <select class="select-bordered" name="process_id">
                             @foreach ($Processes as $process)
                             <option value="{{ $process->process_id }}">{{ $process->process_name }}</option>
                             {{-- <input type="hidden" name="gudang_id" value="{{ $process->gudang_id }}"> --}}
@@ -36,7 +51,7 @@
                         </select>
                     </div>
                 <div class="flex items-center justify-center">
-                        <button type="submit" class="w-40 text-white bg-green-500 hover:bg-green-600 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 hover:scale-105 transition"> 
+                        <button type="submit" class="w-40 text-white bg-green-500 hover:bg-green-600 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 hover:scale-105 transition" onclick="document.getElementById('time-start').value = waktu"> 
                             Check In         
                         </button>            
                 </div> 
@@ -44,5 +59,7 @@
         </div>
     </div>
 
+
+    
 </body>
 </html>

@@ -19,6 +19,13 @@ class OnGoingController extends Controller
      * @return \Illuminate\Http\Response
      */
 
+    public function index(){
+        return view('/admin/index',[
+            'ActiveUser' => Auth::user()->name,
+            'judul'=> 'Selamat Datang',
+        ]);
+    }
+
     public function fg()
     {
         return view('/admin/tracking',[
@@ -57,6 +64,19 @@ class OnGoingController extends Controller
             ->join('warehouses','on_goings.gudang_id','=','warehouses.gudang_id')
             ->join('processes','on_goings.process_id','=','processes.process_id')
             ->get(),
+            'Processes' => Process::where('gudang_id', 'PM')->get()
+        ]);
+    }
+
+    public function tracking(){
+        
+        return view('/admin/tracking1',[
+            'ActiveUser' => Auth::user()->name,
+            'judul'=> 'Tracking',
+            'Users'=> User::where('is_admin','false')
+            ->join('warehouses','users.gudang_id','=','warehouses.gudang_id')
+            ->get(),
+            'OnGoing' => OnGoing::all(),
             'Processes' => Process::where('gudang_id', 'PM')->get()
         ]);
     }

@@ -13,39 +13,84 @@ class UserController extends Controller
 {
     public function index(){
         return view('/user/choose',[
+            'ActiveUser' => Auth::user()->name
         ]);
     }
 
     public function fg(){
-        return view('user/checkin',[
+        if (Auth::user()->gudang_id=='FG') {
+            # code...
+            return view('user/checkin',[
 
+            'ActiveUser' => Auth::user()->name,
             'Processes' => Process::where('gudang_id', 'FG')->get() 
+            
         ]);
+        }
+
+        return back();
     }
     public function rm(){
-        return view('user/checkin',[
-
-            'Processes' => Process::where('gudang_id', 'RM')->get() 
-        ]);
+        if (Auth::user()->gudang_id=='RM') {
+            # code...
+            return view('user/checkin',[
+                'ActiveUser' => Auth::user()->name,    
+                'Processes' => Process::where('gudang_id', 'RM')->get() 
+            ]);
+        }
+        return back();
     }
     public function pm(){
-        return view('user/checkin',[
-
-            'Processes' => Process::where('gudang_id', 'PM')->get() 
-        ]);
+        if (Auth::user()->gudang_id=='PM') {
+            # code...
+            return view('user/checkin',[
+                'ActiveUser' => Auth::user()->name, 
+                'Processes' => Process::where('gudang_id', 'PM')->get() 
+            ]);
+        }
+        return back();
     }
 
     public function checkin(Request $request){
         
         DB::table('on_goings')->insert([
-            'NIK' =>  Auth::user()->NIK,
-            'process_id' => $request->proses,
+            'NIK' => Auth::user()->NIK,
+            'process_id' => $request->process_id,
             'gudang_id' => $request->gudang_id,
-            'total_time' => fake()->time()
+            'total_time' => $request->time_start,
+        ]);
+        
+        $dataOnGoing = $request->all();
+
+        return redirect('/user/checkout')->with('data',$dataOnGoing);
+    }
+
+    public function checkout(Request $request){
+        
+        // $qty = $request->qty;
+        // $time = strtotime($request->time);
+        $performance = 4;
+        
+        DB::table('reports')->insert([
+            'NIK' => Auth::user()->NIK,
+            'process_id' => $request->process_id,
+            'gudang_id' => $request->gudang_id,
+            'performance' => $performance
         ]);
 
-        return view('/user/checkout',[
-            'proses' => $request->proses
-        ]);    
+
+        return redirect('checkout', $request);
     }
+
+    public function checkoutIndex(){
+
+        // dd($test);
+        return view('/user/checkout',[
+            'ActiveUser' => Auth::user()->name,
+            // 'test' => $test->process_id,
+            // 'Processes' => Process::where('process_id','$request->process_id')->get()
+        ]);
+        
+    }
+
 }

@@ -21,16 +21,15 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
 
-        User::factory(10)->create();
+        // User::factory(10)->create();
         
         DB::table('users')->insert([
             'NIK' => Str::random(15),
             'name' => Str::random(10),
             'email' => 'alfarabis@gmail.com',
             'password' => Hash::make('password'),
+            'gudang_id' => 'FG',
             'is_admin' => 1
         ]);
-
-
     }
 }

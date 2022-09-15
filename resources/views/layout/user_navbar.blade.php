@@ -5,7 +5,7 @@
         <div class="flex flex-wrap items-center justify-between">
             <div class="flex flex-shrink md:w-1/3 justify-center md:justify-start text-white">
                 <a href="#" aria-label="Home">
-                    <span class="text-xl pl-2"><i class="em em-grinning"><span class="ml-3">Hi, Alfarabi</span></i></span>
+                    <span class="text-xl pl-2"><i class="em em-grinning"><span class="ml-3">Hi, {{$ActiveUser}}</span></i></span>
                 </a>
             </div>
 
