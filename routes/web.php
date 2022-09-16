@@ -46,9 +46,15 @@ Route::post('/user/checkout', [UserController::class, 'checkout'])->middleware('
 // Superadmin Route
 Route::get('/administrator/', [SuperadminController::class, 'index'])->middleware('isAdmin','auth');
 Route::get('/administrator/user', [SuperadminController::class, 'user'])->middleware('isAdmin','auth');
-Route::get('/administrator/user/edit', [SuperadminController::class, 'editUser'])->middleware('isAdmin','auth');
+Route::post('/administrator/user/edit', [SuperadminController::class, 'editUser'])->middleware('isAdmin','auth');
+Route::post('/administrator/user/post', [SuperadminController::class, 'userPost'])->middleware('isAdmin','auth');
+Route::get('/administrator/user/add', [SuperadminController::class, 'addUser'])->middleware('isAdmin','auth');
 Route::get('/administrator/proses', [SuperadminController::class, 'proses'])->middleware('isAdmin','auth');
-Route::get('/administrator/proses/edit', [SuperadminController::class, 'editProses'])->middleware('isAdmin','auth');
+Route::get('/administrator/proses/add', [SuperadminController::class, 'addProses'])->middleware('isAdmin','auth');
+Route::post('/administrator/proses/edit', [SuperadminController::class, 'editProses'])->middleware('isAdmin','auth');
+Route::post('/administrator/proses/post', [SuperadminController::class, 'prosesPost'])->middleware('isAdmin','auth');
+// Route::post('/administrator/proses/post', [SuperadminController::class, 'editPost'])->middleware('isAdmin','auth');
+// Route::post('/administrator/user/add', [SuperadminController::class, ''])->middleware('isAdmin','auth');
 
 
 

@@ -7,5 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Process extends Model
 {
+    // protected $fillable = [
+    //     'id'
+    // ];
     use HasFactory;
 }

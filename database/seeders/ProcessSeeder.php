@@ -20,15 +20,15 @@ class ProcessSeeder extends Seeder
 
         // Process::factory(10)->create();
         DB::table('processes')->insert([
-            'process_name'=> 'Proses FG',
+            'process_name'=> 'Proses FG 1',
             'gudang_id'=> 'FG'
         ]);
         DB::table('processes')->insert([
-            'process_name'=> 'Proses RM',
+            'process_name'=> 'Proses RM 2',
             'gudang_id'=> 'RM'
         ]);
         DB::table('processes')->insert([
-            'process_name'=> 'Proses PM',
+            'process_name'=> 'Proses PM 3',
             'gudang_id'=> 'PM'
         ]);
 

@@ -81,55 +81,49 @@
 
       <div class="drawer drawer-mobile mt-10">
          <input id="my-drawer" type="checkbox" class="drawer-toggle" />
-         <div class="drawer-content ">
-               <div class=" grid grid-cols-7 mb-6 mt-5 ml-10">
-                  <div class="">
-                     <p class="text-3xl font-bold ">{{$judul}}</p>
-                  </div>
-                  <div>
-                     <span class="bg-green-400 h-10 w-10 px-auto mx-auto rounded-full hover:rotate-45 transition">
-                        <a href="/administrator/user/edit">
-                            <i class="mx-auto my-3 fa fa-pencil"></i>
-                        </a>
-                      </span>
-                  </div>
-               </div>   
+         <div class="drawer-content">
+            <div class="ml-10 mt-5">
+               <div class="mb-5">
+                  <p class="text-3xl font-bold ">{{$judul}}</p>
+               </div>
+               
+            </div>
             @yield('content')
           </div> 
          <div class="drawer-side ">
            <label for="my-drawer" class="drawer-overlay"></label>
            <ul class="menu p-4 overflow-y-auto w-60 bg-gray-800 text-base-content">
-             <!-- Sidebar content here -->
-             <li>
-               <a href="/administrator/user" class="flex items-center p-2 text-base font-normal  rounded-lg text-white hover:bg-gray-700 dark:hover:bg-gray-700">
-                  <span class="flex-1 ml-3 whitespace-nowrap">User</span>
-                  <span><i class="fa fa-user font-white"></i></span>
-               </a>
-            </li>
+            <!-- Sidebar content here -->
             <li>
-               <a href="/administrator/proses" class="flex items-center p-2 text-base font-normal  rounded-lg text-white hover:bg-gray-700 dark:hover:bg-gray-700">
-                  <span class="flex-1 ml-3 whitespace-nowrap">proses</span>
-                  <span><i class="fa fa-user font-white"></i></span>
-               </a>
-            </li>
-            <li>
-               <a href="/dashboard" class="flex items-center p-2 text-base font-normal  rounded-lg text-white hover:bg-gray-700 dark:hover:bg-gray-700">
-                  <span class="flex-1 ml-3 whitespace-nowrap">Dashboard</span>
-                  <span><i class="fa-solid fa-chart-line"></i></span>
-               </a>
-            </li>
-            <li>
-               <form action="/logout" method="POST">
-                  @csrf
-                  <button class="w-full flex item-center p-2 text-base font-normal rounded-lg text-white hover:bg-gray-700 dark:hover:bg-gray-700">                       
-                     <span class="flex-1  whitespace-nowrap">
-                        Logout 
-                        <i class=" fa fa-sign-out fa-2xs"></i>
-                     </span>
-                  </button>
-               </form>
-            </li>
-           </ul>
+              <a href="/administrator/user" class="flex items-center p-2 text-base font-normal  rounded-lg text-white hover:bg-gray-700 dark:hover:bg-gray-700">
+                 <span class="flex-1 ml-3 whitespace-nowrap">User</span>
+                 <span><i class="fa fa-user font-white"></i></span>
+              </a>
+           </li>
+           <li>
+              <a href="/administrator/proses" class="flex items-center p-2 text-base font-normal  rounded-lg text-white hover:bg-gray-700 dark:hover:bg-gray-700">
+                 <span class="flex-1 ml-3 whitespace-nowrap">proses</span>
+                 <span><i class="fa fa-user font-white"></i></span>
+              </a>
+           </li>
+           <li>
+              <a href="/dashboard" class="flex items-center p-2 text-base font-normal  rounded-lg text-white hover:bg-gray-700 dark:hover:bg-gray-700">
+                 <span class="flex-1 ml-3 whitespace-nowrap">Dashboard</span>
+                 <span><i class="fa-solid fa-chart-line"></i></span>
+              </a>
+           </li>
+           <li>
+              <form action="/logout" method="POST">
+                 @csrf
+                 <button class="w-full flex item-center p-2 text-base font-normal rounded-lg text-white hover:bg-gray-700 dark:hover:bg-gray-700">                       
+                    <span class="flex-1  whitespace-nowrap">
+                       Logout 
+                       <i class=" fa fa-sign-out fa-2xs"></i>
+                    </span>
+                 </button>
+              </form>
+           </li>
+          </ul>
          </div>
        </div>
   
