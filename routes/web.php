@@ -39,7 +39,7 @@ Route::get('/user/fg', [UserController::class, 'fg'])->middleware('auth');
 Route::get('/user/rm', [UserController::class, 'rm'])->middleware('auth');
 Route::get('/user/pm', [UserController::class, 'pm'])->middleware('auth');
 Route::get('/user/checkout', [UserController::class, 'checkoutIndex'])->name('chekout')->middleware('auth');
-Route::post('/user/checkin', [UserController::class, 'checkin'])->middleware('auth');
+Route::post('/user/checkin', [UserController::class, 'checkin'])->name('checkin')->middleware('auth');
 Route::post('/user/checkout', [UserController::class, 'checkout'])->middleware('auth');
 
 
@@ -48,6 +48,7 @@ Route::get('/administrator/', [SuperadminController::class, 'index'])->middlewar
 Route::get('/administrator/user', [SuperadminController::class, 'user'])->middleware('isAdmin','auth');
 Route::get('/administrator/user/edit', [SuperadminController::class, 'editUser'])->middleware('isAdmin','auth');
 Route::get('/administrator/proses', [SuperadminController::class, 'proses'])->middleware('isAdmin','auth');
+Route::get('/administrator/proses/edit', [SuperadminController::class, 'editProses'])->middleware('isAdmin','auth');
 
 
 

@@ -20,9 +20,12 @@ class ReportController extends Controller
     {
         //
             return view('/admin/report',[
-                'judul'=>'Report',
-                'Report' => Report::all(),
                 'ActiveUser' => Auth::user()->name,
+                'judul'=>'Report',
+                'Report' => Report::join('users','reports.NIK','=','users.NIK')
+                ->join('warehouses','reports.gudang_id','=','warehouses.gudang_id')
+                ->join('processes','reports.process_id','=','processes.process_id')
+                ->get(),
                 'Users'=> User::where('is_admin','false')->get(),
             ]);
     }

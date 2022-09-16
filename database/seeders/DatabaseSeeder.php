@@ -24,8 +24,8 @@ class DatabaseSeeder extends Seeder
         // User::factory(10)->create();
         
         DB::table('users')->insert([
-            'NIK' => Str::random(15),
-            'name' => Str::random(10),
+            'NIK' => '31209843',
+            'name' => 'Muhamad Alfarabi Setiawan',
             'email' => 'alfarabis@gmail.com',
             'password' => Hash::make('password'),
             'gudang_id' => 'FG',

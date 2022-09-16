@@ -14,7 +14,9 @@
             @foreach ($Processes as $process)
                 <th class="table-fixed	w-5  text-center whitespace-nowrap">{{ $process->process_name}}</th>        
             @endforeach
+            </tr>
         </thead>
+
         <tbody class="">    
             @foreach ($Users as $user)
      

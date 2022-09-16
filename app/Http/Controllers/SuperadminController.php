@@ -39,4 +39,11 @@ class SuperadminController extends Controller
             'judul'=> 'Halaman Edit User',
         ]);
     }
+    
+    public function editProses(){
+        return view('/superadmin/crud_proses',[
+            'ActiveUser' => Auth::user()->name,
+            'judul'=> 'Halaman Edit Proses',
+        ]);
+    }
 }

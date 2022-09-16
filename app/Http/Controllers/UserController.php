@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Process;
+use App\Models\Warehouse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
@@ -53,23 +54,57 @@ class UserController extends Controller
 
     public function checkin(Request $request){
         
-        DB::table('on_goings')->insert([
+        
+        
+        // $dataOnGoing = $request->all();
+
+        return view('/user/checkout',[
+            'ActiveUser' => Auth::user()->name,
             'NIK' => Auth::user()->NIK,
             'process_id' => $request->process_id,
             'gudang_id' => $request->gudang_id,
-            'total_time' => $request->time_start,
+            'time_start' => $request->time_start,
+            // 'test' => $test->process_id,
+            // 'Processes' => Process::where('process_id','$request->process_id')->get()
+        ]);
+    }
+    
+    public function checkoutIndex(){
+
+        // dd($test);
+        return view('/user/checkout',[
+            // 'ActiveUser' => Auth::user()->name,
+            // 'process_id' => '5',
+            // 'gudang_id' => Auth::user()->gudang_id,
+            // 'test' => $test->process_id,
+            // 'Processes' => Process::where('process_id','$request->process_id')->get()
         ]);
         
-        $dataOnGoing = $request->all();
-
-        return redirect('/user/checkout')->with('data',$dataOnGoing);
     }
 
     public function checkout(Request $request){
         
-        // $qty = $request->qty;
-        // $time = strtotime($request->time);
-        $performance = 4;
+        // dd($request);
+        
+        DB::table('on_goings')->insert([
+            'NIK' => Auth::user()->NIK,
+            'process_id' => $request->process_id,
+            'gudang_id' => $request->gudang_id,
+            'time_start' => $request->time_start,
+            'time_end' => $request->time_end,
+        ]);
+                    
+        
+        $time_start = strtotime($request->time_start);
+        $time_end = strtotime($request->time_end);
+
+        $total_time = ($time_end - $time_start);
+        $qty = $request->qty;
+
+        $performance = $qty / $total_time;
+
+        // dd($total_time);
+        // dd($performance);
         
         DB::table('reports')->insert([
             'NIK' => Auth::user()->NIK,
@@ -79,18 +114,10 @@ class UserController extends Controller
         ]);
 
 
-        return redirect('checkout', $request);
+        // return view('/user/checkin');
+        return redirect('/user');
     }
 
-    public function checkoutIndex(){
 
-        // dd($test);
-        return view('/user/checkout',[
-            'ActiveUser' => Auth::user()->name,
-            // 'test' => $test->process_id,
-            // 'Processes' => Process::where('process_id','$request->process_id')->get()
-        ]);
-        
-    }
 
 }

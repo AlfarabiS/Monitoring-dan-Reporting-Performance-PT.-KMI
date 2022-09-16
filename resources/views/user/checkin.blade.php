@@ -18,7 +18,6 @@
 
         var today = new Date();
         var waktu = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-        var testingan = "something"
         //document.getElementById("time-start").value = testingan; 
 
         document.getElementById(waktu).innerHTML = waktu;

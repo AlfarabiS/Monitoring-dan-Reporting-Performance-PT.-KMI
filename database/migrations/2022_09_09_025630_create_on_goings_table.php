@@ -18,7 +18,8 @@ return new class extends Migration
             $table->string('NIK');
             $table->string('process_id');
             $table->string('gudang_id');
-            $table->time('total_time');
+            $table->time('time_start');
+            $table->time('time_end');
             $table->timestamps();
         });
     }

@@ -3,7 +3,7 @@
 
 @section('content')
 
-<div class="ml-10 w-full">
+<div class="container ml-5">
 
     <form action="" method="post">
         <div class="form-control w-full max-w-xs">

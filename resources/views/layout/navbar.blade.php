@@ -6,12 +6,12 @@
             <div class="flex flex-shrink w-full justify-start md:justify-start text-white">
                 {{-- <a href="#" aria-label="Home"> --}}
                     <span class="text-xl pl-2">
-                        <i class="em em-grinning">
+                        <label for="my-drawer" class="">
+                            <i class="fa fa-bars "></i>
+                        </label>
                         <span class="ml-3">
-                            <label for="my-drawer" class="">
-                                Hi, {{ $ActiveUser }}
-                            </label>
-                        </span></i>
+                            Hi, {{ $ActiveUser }}
+                        </span>
                     </span>
                 {{-- </a> --}}
             </div>

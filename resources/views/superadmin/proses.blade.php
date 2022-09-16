@@ -24,7 +24,7 @@
               <td class=" border  text-center whitespace-nowrap">
                 <div class="flex">    
                   <span class="bg-green-400 h-10 w-10 px-auto mx-auto rounded-full hover:rotate-45 transition">
-                    <a href="/administrator/user/edit">
+                    <a href="/administrator/proses/edit">
                         <i class="mx-auto my-3 fa fa-pencil"></i>
                     </a>
                   </span>
