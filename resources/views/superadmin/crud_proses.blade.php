@@ -7,12 +7,17 @@
 
     <form action="/administrator/proses/post" method="post">
         @csrf
-        <input type="hidden" name="process_id" value="{{ $ProcessId }}">
         <div class="form-control w-full max-w-xs">
             <label class="label">
             <span class="label-text">Nama Proses</span>
             </label>
             <input type="text" name="process_name" placeholder="Nama Proses" value="{{ $ProcessName }}" class="input input-bordered w-full max-w-xs">
+        </div>
+        <div class="form-control w-full max-w-xs">
+            <label class="label">
+            <span class="label-text">Nama Proses</span>
+            </label>
+            <input type="text" name="process_id" value="{{ $ProcessId }}" placeholder="FG-Loading" class="input input-bordered w-full max-w-xs">
         </div>
         <div class="form-control w-full max-w-xs">
             <label class="label">

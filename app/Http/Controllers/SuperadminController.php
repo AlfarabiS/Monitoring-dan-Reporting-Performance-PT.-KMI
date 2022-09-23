@@ -23,7 +23,7 @@ class SuperadminController extends Controller
         return view('/superadmin/user',[
             'ActiveUser' => Auth::user()->name,
             'judul'=> 'Halaman Edit User',
-            'Users'=> User::all(),
+            'Users'=> User::Sortable()->get(),
         ]);
     }
 
@@ -34,7 +34,8 @@ class SuperadminController extends Controller
             'Name'=>'',
             'Email'=>'',
             'NIK'=>'',
-            'Gudang'=>''
+            'Gudang'=>'',
+            'Password'=>''
         ]);
     }
 
@@ -42,7 +43,6 @@ class SuperadminController extends Controller
     
     public function editUser(Request $request){
         
-        // $id_user = $request->id_user;
         $identity = User::find($request->id_user);
         // $identity = $identity_raw->toArray();
 
@@ -68,11 +68,20 @@ class SuperadminController extends Controller
             'email'=>$request->email,
             'gudang_id'=>$request->gudang,
             'password'=>bcrypt($request->password),
-            'is_admin'=>0
+            'is_admin'=>$request->role
         ]);
         
         return redirect('/administrator/user/');
 
+    }
+
+    public function userDelete(Request $request){
+        
+        // dd($request);
+        if ($request) {
+            # code...
+        }
+        User::where('id','=',$request->id_user)->delete();
     }
     
 
@@ -81,7 +90,7 @@ class SuperadminController extends Controller
         return view('/superadmin/proses',[
             'ActiveUser' => Auth::user()->name,
             'judul'=> 'Halaman Edit Proses',
-            'Processes'=> Process::orderby('gudang_id')->get(),
+            'Processes'=> Process::Sortable()->paginate(10),
         ]);
     }
     
@@ -117,10 +126,12 @@ class SuperadminController extends Controller
         // dd($request);       
 
         Process::UpdateOrCreate([
-            'process_id'=>$request->id_proses],[
+            'process_id'=>$request->process_id],[
+            'process_id'=>$request->process_id,
             'process_name'=>$request->process_name,
-            'gudang_id'=>$request->gudang_id
+            'gudang_id'=>$request->gudang_id,
         ]);
+        
         
         return redirect('/administrator/proses/');
 

@@ -6,9 +6,9 @@
 <div class="flex mb-2">
   
   
-  <span class="bg-green-400 h-10 w-10 ml-10 rounded-full hover:rotate-45 transition">
+  <span class="bg-green-400 h-10 w-10 ml-10 rounded-full transition">
     <a href="/administrator/user/add">
-        <i class="mx-3 my-3 fa fa-plus"></i>    
+        <i class="hover:scale-150 mx-3 my-3 fa fa-plus transition"></i>    
     </a>
   </span>
   <span>
@@ -24,10 +24,10 @@
       <thead class=" text-black">
           <tr class="sticky top-0">    
               <th class="w-2 border text-center whitespace-nowrap">No</th>
-              <th class="w-10 border text-center whitespace-nowrap">Nama</th>
-              <th class="w-10 border text-center whitespace-nowrap">NIK</th>
-              <th class="w-10 border text-center whitespace-nowrap">Email</th>
-              <th class="w-10 border text-center whitespace-nowrap">Lokasi</th>    
+              <th class="w-10 border text-center whitespace-nowrap">@sortablelink('name','Nama')</th>
+              <th class="w-10 border text-center whitespace-nowrap">@sortablelink('NIK','NIK')</th>
+              <th class="w-10 border text-center whitespace-nowrap">@sortablelink('email','Email')</th>
+              <th class="w-10 border text-center whitespace-nowrap">@sortablelink('gudang_id','Lokasi')</th>    
               <th class="border text-center	w-10 whitespace-nowrap">Action</th>        
       </thead>
       <tbody class="">    
@@ -41,18 +41,23 @@
               <td class=" border  text-center whitespace-nowrap">{{ $user->gudang_id }}</td>                 
               <td class=" border  text-center whitespace-nowrap">
                 <div class="flex">    
-                  <span class="bg-green-400 h-10 w-10 px-auto mx-auto rounded-full hover:rotate-45 transition">
+                  <span class="bg-green-400 h-10 w-10 px-auto mx-auto rounded-full  transition">
                     <form action="/administrator/user/edit" method="POST">
                       @csrf
                       <input type="hidden" name="id_user" value="{{ $user->id }}">
                       <button type="submit">
-                        <i class="mx-auto my-3 fa fa-pencil"></i>
+                        <i class="hover:scale-150 mx-auto my-3 fa fa-pencil transition"></i>
                       </button>  
                     </form>
                   </span>
                   <span class="bg-red-500 h-10 w-10  px-auto mx-auto rounded-full">
-                    <i class="mx-auto my-3 fa fa-trash"></i>
-                  </span>
+                    <form action="/administrator/user/delete" method="POST">
+                      @csrf
+                      <input type="hidden" name="id_user" value="{{ $user->id }}">
+                      <button type="submit">
+                        <i class="hover:scale-150 mx-auto my-3 fa fa-trash transition"></i>
+                      </button>  
+                    </form>                  </span>
                 </div>
               </td>                 
           </tr>

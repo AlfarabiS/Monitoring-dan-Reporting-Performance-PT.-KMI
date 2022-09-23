@@ -14,6 +14,9 @@
 <body class="bg-slate-100">
 @include('layout.user_navbar')
     <div class="container px-10 py-10 bg-slate-200 mx-auto mt-36"> 
+        <div class="flex items-center justify-center font-bold text-xl mb-2">
+        <h1 id="time"></h1>
+        </div>
         <div class="flex items-center justify-center ">
             <form action="/user/fg">
                 @csrf
@@ -51,5 +54,20 @@
         </div>
     </div>
 
+    <script type="text/javascript">
+        var timeDisplay = document.getElementById("time");
+    
+    
+        function refreshTime() {
+        var dateString = new Date().toLocaleString("id-ID");
+        var formattedString = dateString.replace(/\//g, "-");
+        var formattedString = formattedString.replace(".", ":");
+        var formattedString = formattedString.replace(".", ":");
+        timeDisplay.innerHTML = formattedString;
+    
+    }
+
+    setInterval(refreshTime,1000);
+    </script>
 </body>
 </html>

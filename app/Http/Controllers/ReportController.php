@@ -18,16 +18,14 @@ class ReportController extends Controller
      */
     public function index()
     {
-        //
+        $Report = Report::sortable('date','DSC')->paginate(10);
+
             return view('/admin/report',[
                 'ActiveUser' => Auth::user()->name,
                 'judul'=>'Report',
-                'Report' => Report::join('users','reports.NIK','=','users.NIK')
-                ->join('warehouses','reports.gudang_id','=','warehouses.gudang_id')
-                ->join('processes','reports.process_id','=','processes.process_id')
-                ->get(),
-                'Users'=> User::where('is_admin','false')->get(),
-            ]);
+
+                // 'Users'=> User::where('is_admin','false')->get(),
+            ])->with('Report',$Report);
     }
 
     /**

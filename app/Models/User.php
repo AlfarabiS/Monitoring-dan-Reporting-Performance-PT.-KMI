@@ -3,15 +3,21 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Report;
+use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
+use Kyslik\ColumnSortable\Sortable;
 
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
+    use Sortable;
 
+    public function gudang_id(){
+        return $this->hasMany(Report::class);
+    }
     /**
      * The attributes that are mass assignable.
      *
@@ -20,6 +26,13 @@ class User extends Authenticatable
     protected $guarded = [
         'id',
 
+    ];
+
+    public $Sortable = [
+        'name',
+        'NIK',
+        'email',
+        'gudang_id'
     ];
 
     /**

@@ -18,7 +18,9 @@ return new class extends Migration
             $table->string('NIK');
             $table->string('process_id');
             $table->string('gudang_id');
+            $table->datetime('reports_time');
             $table->float('performance');
+            $table->text('keterangan')->nullable;
             $table->timestamps();
         });
     }

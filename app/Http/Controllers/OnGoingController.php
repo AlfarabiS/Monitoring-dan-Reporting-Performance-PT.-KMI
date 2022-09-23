@@ -19,6 +19,11 @@ class OnGoingController extends Controller
      * @return \Illuminate\Http\Response
      */
 
+    public function __construct(){
+        $this->middleware('auth');
+        $this->middleware('isAdmin');
+    }
+
     public function index(){
         return view('/admin/index',[
             'ActiveUser' => Auth::user()->name,
@@ -28,6 +33,8 @@ class OnGoingController extends Controller
 
     public function fg()
     {
+        $Users = OnGoing::Sortable('name')->paginate(10);
+
         return view('/admin/tracking',[
             'ActiveUser' => Auth::user()->name,
             'judul'=> 'Tracking',
@@ -37,7 +44,7 @@ class OnGoingController extends Controller
             ->join('processes','on_goings.process_id','=','processes.process_id')
             ->get(),
             'Processes' => Process::where('gudang_id', 'FG')->get()
-        ]);
+        ])->with('Users',$Users);
     }
 
     public function rm()
@@ -56,29 +63,31 @@ class OnGoingController extends Controller
 
     public function pm()
     {
+        $Users = OnGoing::Sortable('name')->paginate(10);
+
         return view('/admin/tracking',[
             'ActiveUser' => Auth::user()->name,
             'judul'=> 'Tracking',
             'Users'=> User::where('is_admin','false')->get(),
-            'OnGoing' => OnGoing::join('users','on_goings.NIK','=','users.NIK')
-            ->join('warehouses','on_goings.gudang_id','=','warehouses.gudang_id')
-            ->join('processes','on_goings.process_id','=','processes.process_id')
-            ->get(),
             'Processes' => Process::where('gudang_id', 'PM')->get()
         ]);
     }
 
     public function tracking(){
+
+        $Users = OnGoing::Sortable('name')->paginate(10);
         
         return view('/admin/tracking1',[
             'ActiveUser' => Auth::user()->name,
             'judul'=> 'Tracking',
-            'Users'=> User::where('is_admin','false')
-            ->join('warehouses','users.gudang_id','=','warehouses.gudang_id')
-            ->get(),
-            'OnGoing' => OnGoing::all(),
-            'Processes' => Process::where('gudang_id', 'PM')->get()
-        ]);
+            'Users'=> User::leftjoin('on_goings','users.NIK','=','on_goings.NIK')
+                ->leftjoin('warehouses','users.gudang_id','=','warehouses.gudang_id')
+                ->leftjoin('processes','processes.process_id','=','on_goings.process_id')
+                ->where('is_admin',false)
+                ->orWhere('active',true)
+                ->get()
+            ])->with('Users',$Users);
+            // ->join('on_goings','users.NIK','=','on_goings.NIK')
     }
 
     /**

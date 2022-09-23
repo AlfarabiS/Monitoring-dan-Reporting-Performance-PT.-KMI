@@ -8,10 +8,11 @@
         <thead class=" ">
             <tr class="sticky bg-gray-800 top-0 h-8 bg-gray">    
                 <th class="w-2 border text-center whitespace-nowrap">No</th>
-                <th class="w-60 border  text-center whitespace-nowrap">Nama</th>
-                <th class="w-20 border  text-center whitespace-nowrap">Lokasi</th>
-                <th class="w-20 border  text-center whitespace-nowrap">Proses</th>
-                <th class="w-5 border  text-center whitespace-nowrap">Performance</th>
+                <th class="w-60 border  text-center whitespace-nowrap">@sortablelink('name','Nama')</th>
+                <th class="w-20 border  text-center whitespace-nowrap">@sortablelink('date','Waktu')</th>
+                <th class="w-20 border  text-center whitespace-nowrap">@sortablelink('gudang','Lokasi')</th>
+                <th class="w-20 border  text-center whitespace-nowrap">@sortablelink('proses','Proses')</th>
+                <th class="w-5 border  text-center whitespace-nowrap">@sortablelink('performance','Performance')</th>
 
 
         </thead>
@@ -21,14 +22,16 @@
             <tr class="bg-gray ">
                 <td class=" whitespace-nowrap">{{ $loop->iteration }}</td>
                 <td class=" whitespace-nowrap">{{ $report->name }}</td>
+                <td class=" whitespace-nowrap">{{ $report->reports_time}}</td>
                 <td class=" whitespace-nowrap">{{ $report->gudang_name}}</td>
                 <td class=" whitespace-nowrap">{{ $report->process_name}}</td>
                 <td class=" whitespace-nowrap">{{ $report->performance*10 }}%</td>         
             </tr>
             
             @endforeach  
-
+            
         </tbody>
     </table>
+    {{ $Report->onEachSide(1)->links() }}
 </div>  
 @endsection

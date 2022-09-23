@@ -5,14 +5,14 @@
 
 @section('content')
 <div class="overflow-x-scroll h-96 rounded-lg hover:shadow-xl transition">
-    <table class="w-full h-2 table table-zebra table-compact ">
+    <table class="w-full h-2 table table-zebra table-compact text-center">
         <thead class="">
             <tr class="sticky top-0 h-8 ">    
-                <th class="w-2  text-center whitespace-nowrap">No</th>
-                <th class="w-60  text-center whitespace-nowrap">Nama</th>
-                <th class="w-20  text-center whitespace-nowrap">NIK</th>    
+                <th class="w-2 whitespace-nowrap">No</th>
+                <th class="w-60 whitespace-nowrap">@sortablelink('name','Nama')</th>
+                <th class="w-20 whitespace-nowrap">@sortablelink('NIK','NIK')</th>    
             @foreach ($Processes as $process)
-                <th class="table-fixed	w-5  text-center whitespace-nowrap">{{ $process->process_name}}</th>        
+                <th class="table-fixed	w-5   whitespace-nowrap">{{ $process->process_name}}</th>        
             @endforeach
             </tr>
         </thead>
@@ -21,11 +21,19 @@
             @foreach ($Users as $user)
      
             <tr class="hover">
-                <td class="border text-center whitespace-nowrap">{{ $loop->iteration }}</td>
-                <td class="border text-center whitespace-nowrap">{{ $user->name }}</td>
-                <td class="border text-center whitespace-nowrap">{{ $user->NIK }}</td>                
-                <td class="border flex flex-center whitespace-nowrap">
-                <img src="/assets/img/user.svg" alt="" width="20px">  
+                <td class="border whitespace-nowrap">{{ $loop->iteration }}</td>
+                <td class="bordercenter whitespace-nowrap">{{ $user->name }}</td>
+                <td class="border whitespace-nowrap">{{ $user->NIK }}</td>                
+                @foreach ($Processes     as $process)
+                @if ($user->process_id === $process->process_id)
+                    <td class="border flex flex-center whitespace-nowrap">
+                        <i class="fa fa-user"></i>
+                    </td>  
+                @else
+                    <td class="border whitespace-nowrap"></td>
+                @endif
+                @endforeach
+            
             </tr>
             @endforeach
             

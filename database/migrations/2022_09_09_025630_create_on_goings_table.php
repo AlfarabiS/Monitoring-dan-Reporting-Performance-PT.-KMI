@@ -15,11 +15,13 @@ return new class extends Migration
     {
         Schema::create('on_goings', function (Blueprint $table) {
             $table->id();
-            $table->string('NIK');
+            $table->string('NIK')->unique;
             $table->string('process_id');
             $table->string('gudang_id');
             $table->time('time_start');
-            $table->time('time_end');
+            $table->time('time_end')->nullable;
+            $table->boolean('active');
+            $table->text('keterangan')->nullable;
             $table->timestamps();
         });
     }

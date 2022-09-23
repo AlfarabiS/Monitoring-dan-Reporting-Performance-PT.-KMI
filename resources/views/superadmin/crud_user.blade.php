@@ -45,6 +45,15 @@
                 <option value="PM">Packaging Material</option>
             </select>
         </div>
+        <div class="form-control w-full max-w-xs">
+            <label class="label">
+            <span class="label-text">Lokasi</span>
+            </label>
+            <select class="select select-bordered w-full max-w-xs" name="role" id="" required>
+                <option value="0">Operator</option>
+                <option value="1">Admin</option>
+            </select>
+        </div>
         <div class="form-control w-full max-w-xs mt-5">
             <button type="submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
         </div>
