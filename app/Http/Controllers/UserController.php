@@ -16,6 +16,10 @@ use Illuminate\Support\Facades\Auth;
 class UserController extends Controller
 
 {
+    public function __construct(){
+        date_default_timezone_set("Asia/Jakarta");
+    }
+
     public function index(){
         return view('/user/choose',[
             'ActiveUser' => Auth::user()->name
@@ -63,7 +67,7 @@ class UserController extends Controller
             'NIK' => Auth::user()->NIK],[
             'process_id' => $request->process_id,
             'gudang_id' => $request->gudang_id,
-            'time_start' => $request->time_start,
+            'time_start' => date("h:i:s"),
             'time_end' => '00:00:00',
             'active'=> 1,
             'keterangan'=>$request->details
@@ -104,6 +108,7 @@ class UserController extends Controller
     
         $total_time = ($time_end - $time_start);
         $qty = $request->qty;
+        $std = 
     
         $performance = $qty / $total_time;
         // @if
@@ -114,7 +119,7 @@ class UserController extends Controller
         DB::table('on_goings')
             ->where('time_start',$time_start_raw)
             ->update([
-                'process_id'=>'idle',
+                'process_id'=>'Idle',
                 'time_end'=>$request->time_end,
                 'active'=>0,
                 'keterangan'=>''
@@ -192,7 +197,6 @@ class UserController extends Controller
             'hold_start' => $request->hold_start,
             'details' => $request->details,
             'keterangan' => $request->keterangan
-
         ]);
 
     }
