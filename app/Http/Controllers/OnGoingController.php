@@ -33,7 +33,7 @@ class OnGoingController extends Controller
 
     public function fg()
     {
-        $Users = OnGoing::Sortable('name')->paginate(10);
+        $Users = OnGoing::Sortable('name')->where('users.gudang_id','FG')->paginate(10);
 
         return view('/admin/tracking',[
             'ActiveUser' => Auth::user()->name,
@@ -49,6 +49,8 @@ class OnGoingController extends Controller
 
     public function rm()
     {
+        $Users = OnGoing::Sortable('name')->where('users.gudang_id','RM')->paginate(10);
+
         return view('/admin/tracking',[
             'ActiveUser' => Auth::user()->name,
             'judul'=> 'Tracking',
@@ -58,19 +60,18 @@ class OnGoingController extends Controller
             ->join('processes','on_goings.process_id','=','processes.process_id')
             ->get(),
             'Processes' => Process::where('gudang_id', 'RM')->get()
-        ]);
+        ])->with('Users',$Users);
     }
 
     public function pm()
     {
-        $Users = OnGoing::Sortable('name')->paginate(10);
+        $Users = OnGoing::Sortable('name')->where('users.gudang_id','PM')->paginate(10);
 
         return view('/admin/tracking',[
             'ActiveUser' => Auth::user()->name,
             'judul'=> 'Tracking',
-            'Users'=> User::where('is_admin','false')->get(),
             'Processes' => Process::where('gudang_id', 'PM')->get()
-        ]);
+        ])->with('Users',$Users);;
     }
 
     public function tracking(){

@@ -17,7 +17,8 @@ class ReportSeeder extends Seeder
      */
     public function run()
     {
-        Report::factory(10)->create();
-        
+        DB::table('reports')->insert([
+
+        ]);
     }
 }

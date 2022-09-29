@@ -10,9 +10,9 @@
             <tr class="sticky top-0 h-8 ">    
                 <th class="w-2 whitespace-nowrap">No</th>
                 <th class="w-60 whitespace-nowrap">@sortablelink('name','Nama')</th>
-                <th class="w-20 whitespace-nowrap">@sortablelink('NIK','NIK')</th>    
+                <th class="w-20 whitespace-nowrap">NIK</th>    
             @foreach ($Processes as $process)
-                <th class="table-fixed	w-5   whitespace-nowrap">{{ $process->process_name}}</th>        
+                <th class="table-fixed	w-20   whitespace-nowrap">{{ $process->process_name}}</th>        
             @endforeach
             </tr>
         </thead>
@@ -26,8 +26,10 @@
                 <td class="border whitespace-nowrap">{{ $user->NIK }}</td>                
                 @foreach ($Processes     as $process)
                 @if ($user->process_id === $process->process_id)
-                    <td class="border flex flex-center whitespace-nowrap">
-                        <i class="fa fa-user"></i>
+                    <td class="border object-none object-center whitespace-nowrap">
+                        <div class="tooltip" data-tip="{{ $user->keterangan }}">
+                            <i class=" fa fa-user"  ></i>
+                        </div>
                     </td>  
                 @else
                     <td class="border whitespace-nowrap"></td>
