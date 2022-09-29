@@ -18,7 +18,7 @@ class ReportController extends Controller
      */
     public function index()
     {
-        $Report = Report::sortable('date','DSC')->paginate(10);
+        $Report = Report::sortable('date')->paginate(15);
 
             return view('/admin/report',[
                 'ActiveUser' => Auth::user()->name,
@@ -26,71 +26,5 @@ class ReportController extends Controller
 
                 // 'Users'=> User::where('is_admin','false')->get(),
             ])->with('Report',$Report);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreReportRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(StoreReportRequest $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Report  $report
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Report $report)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Report  $report
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Report $report)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateReportRequest  $request
-     * @param  \App\Models\Report  $report
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdateReportRequest $request, Report $report)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Report  $report
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Report $report)
-    {
-        //
     }
 }

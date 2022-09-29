@@ -25,13 +25,13 @@
                 <td class=" whitespace-nowrap">{{ $report->reports_time}}</td>
                 <td class=" whitespace-nowrap">{{ $report->gudang_name}}</td>
                 <td class=" whitespace-nowrap">{{ $report->process_name}}</td>
-                <td class=" whitespace-nowrap">{{ $report->performance*10 }}%</td>         
+                <td class=" whitespace-nowrap">{{ $report->performance}}%</td>         
             </tr>
             
             @endforeach  
             
         </tbody>
     </table>
-    {{ $Report->onEachSide(1)->links() }}
 </div>  
+{{ $Report->onEachSide(1)->links() }}
 @endsection

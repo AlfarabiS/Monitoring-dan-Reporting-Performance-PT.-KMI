@@ -26,9 +26,9 @@
                 <td class=" border  whitespace-nowrap">{{ $user->gudang_name }}</td>                
                 <td class=" border   whitespace-nowrap">
                     @if ($user->active == 1)
-                    <span class="w-3 h-3 float-right bg-green-700 shadow-2xl rounded-full"></span>
+                        <span class="w-3 h-3 float-right bg-green-700 shadow-2xl rounded-full"></span>
                     @else 
-                    <span class="w-3 h-3 float-right bg-slate-400 shadow-2xl rounded-full"></span>
+                        <span class="w-3 h-3 float-right bg-slate-400 shadow-2xl rounded-full"></span>
                     @endif
                     {{$user->process_name}}
                 </td>

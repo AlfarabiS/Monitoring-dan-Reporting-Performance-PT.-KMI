@@ -31,7 +31,7 @@
                     <label class="label">
                         <span class="label-text">Password</span>
                         </label>
-                        <input type="password" name="password" placeholder="" value="{{ $Password }}" class="input input-bordered w-full max-w-xs " required>
+                        <input type="password" name="password" placeholder="" value="" class="input input-bordered w-full max-w-xs " required>
                 </div>
             </div>
         </div>

@@ -5,13 +5,22 @@
         <div class="flex flex-wrap items-center">
             <div class="flex flex-shrink w-full justify-start md:justify-start text-white">
                 {{-- <a href="#" aria-label="Home"> --}}
-                    <span class="text-xl pl-2">
-                        <label for="my-drawer" class="">
-                            <i class="fa fa-bars "></i>
-                        </label>
-                        <span class="ml-3">
-                            Hi, {{ $ActiveUser }}
-                        </span>
+                    <span class=" pl-2">
+                        <label for="my-drawer" class="btn btn-circle swap swap-rotate">
+  
+                            <!-- this hidden checkbox controls the state -->
+                            <input id="my-drawer" type="checkbox" class="drawer-toggle"  />
+                            
+                            <!-- hamburger icon -->
+                            <svg class="swap-off fill-current" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 512 512"><path d="M64,384H448V341.33H64Zm0-106.67H448V234.67H64ZM64,128v42.67H448V128Z"/></svg>
+                            
+                            <!-- close icon -->
+                            <svg class="swap-on fill-current" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 512 512"><polygon points="400 145.49 366.51 112 256 222.51 145.49 112 112 145.49 222.51 256 112 366.51 145.49 400 256 289.49 366.51 400 400 366.51 289.49 256 400 145.49"/></svg>
+                            
+                          </label>
+                    </span>
+                    <span class=" text-xl ml-3 mt-2.5">
+                        Hi, {{ $ActiveUser }}
                     </span>
                 {{-- </a> --}}
             </div>

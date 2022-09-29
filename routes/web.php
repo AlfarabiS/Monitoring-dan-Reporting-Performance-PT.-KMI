@@ -23,7 +23,7 @@ Route::post('/login', [LoginController::class, 'authenticate']);
 Route::post('/logout', [LoginController::class, 'logout']);
 
 // Dashboard Route
-Route::get('/tracking/', [OnGoingController::class, 'tracking'])->middleware('isAdmin','auth');
+Route::get('/tracking', [OnGoingController::class, 'tracking'])->middleware('isAdmin','auth');
 Route::get('/tracking/fg', [OnGoingController::class, 'fg'])->middleware('isAdmin','auth');
 Route::get('/tracking/rm', [OnGoingController::class, 'rm'])->middleware('isAdmin','auth');
 Route::get('/tracking/pm', [OnGoingController::class, 'pm'])->middleware('isAdmin','auth');
@@ -34,11 +34,11 @@ Route::get('/report', [ReportController::class, 'index'])->middleware('isAdmin',
 
 
 // Operator Route
-Route::get('/user', [UserController::class, 'index'])->middleware('auth');
+Route::get('/user', [UserController::class, 'index'])->middleware('auth','isActive');
 Route::get('/user/fg', [UserController::class, 'fg'])->middleware('auth');
 Route::get('/user/rm', [UserController::class, 'rm'])->middleware('auth');
 Route::get('/user/pm', [UserController::class, 'pm'])->middleware('auth');
-Route::get('/user/checkout', [UserController::class, 'checkoutIndex'])->name('chekout')->middleware('auth');
+// Route::get('/user/checkout', [UserController::class, 'checkoutIndex'])->name('chekout')->middleware('auth');
 Route::post('/user/checkin', [UserController::class, 'checkin'])->name('checkin')->middleware('auth');
 Route::post('/user/checkout', [UserController::class, 'checkout'])->middleware('auth');
 Route::post('/user/hold', [UserController::class, 'hold'])->middleware('auth');

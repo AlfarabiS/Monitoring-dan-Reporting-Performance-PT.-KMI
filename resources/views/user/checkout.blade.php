@@ -1,18 +1,5 @@
 @extends('layout.user_layout')
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title></title>
-    @vite('resources/css/app.css')
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-    
-</head>
-<body class="bg-slate-100">
 
 @include('layout.user_navbar')
     <div class="container px-10 py-10 bg-slate-200 mx-auto mt-48"> 
@@ -26,6 +13,8 @@
                 <input type="hidden" name="process_id" value="{{$process_id}}">
                 <input type="hidden" name="gudang_id" value="{{$gudang_id}}">
                 <input type="hidden" name="details" value="{{$details}}">
+                <input type="hidden" name="hold_start" value="{{$hold_start}}">
+                <input type="hidden" name="hold_end" value="{{$hold_end}}">
                 <input type="hidden" id="time_end" name="time_end" value="" />
                 <div class="mx-auto mb-3">
                     <label class="text-center font-semibold" for="qty">Masukan Quantity</label>
@@ -77,6 +66,8 @@
     }
 
     setInterval(refreshTime,1000);
+
+    window.beforeunload = function() { return "Your work will be lost."; };
     </script>
 </body>
 </html>

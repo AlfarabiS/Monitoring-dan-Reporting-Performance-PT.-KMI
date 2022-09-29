@@ -16,7 +16,11 @@
                     <li>
                         <form action="/logout" method="POST">
                             @csrf
-                            <button class="w-full flex p-2 text-base font-normal rounded-lg text-white hover:bg-gray-700 dark:hover:bg-gray-700">                       
+                            @if (Session::has('process_id'))
+                                <button class="w-full flex p-2 text-base font-normal rounded-lg text-white hover:bg-gray-700 dark:hover:bg-gray-700" disabled>                       
+                            @else
+                                <button class="w-full flex p-2 text-base font-normal rounded-lg text-white hover:bg-gray-700 dark:hover:bg-gray-700" >   
+                            @endif
                                <span class="flex-1  whitespace-nowrap">
                                 Logout
                                 <i class=" fa fa-sign-out fa-2xs"></i></span>

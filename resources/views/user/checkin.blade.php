@@ -1,17 +1,6 @@
 @extends('layout.user_layout')
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title></title>
-    @vite('resources/css/app.css')
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-</head>
-<body class="bg-slate-100">
 @include('layout.user_navbar')
 
     <div class="container px-10 py-10 bg-slate-200 mx-auto my-20"> 
@@ -37,10 +26,14 @@
                 </div>
                     <div class="mx-auto ">
                         <label class="label" for="details">Detail</label>
-                        <textarea class="textarea" name="details" id="" cols="30" rows="5" placeholder=""></textarea>
+                        <textarea class="textarea" name="details" id="" cols="30" rows="5" placeholder="" required></textarea>
                     </div>
                 <div class="flex items-center justify-center mt-5">
-                    <button type="submit" class="w-40 text-white bg-green-500 hover:bg-green-600 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 hover:scale-105 transition" onclick="document.getElementById('time-start').value = waktu"> 
+                    @if (Session::has('process_id'))
+                        <button type="submit" class="w-40 text-white bg-green-500 hover:bg-green-600 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 hover:scale-105 transition" onclick="document.getElementById('time-start').value = waktu" disabled> 
+                    @else
+                        <button type="submit" class="w-40 text-white bg-green-500 hover:bg-green-600 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 hover:scale-105 transition" onclick="document.getElementById('time-start').value = waktu">
+                    @endif 
                             Check In         
                     </button>            
                 </div> 
@@ -69,5 +62,3 @@
 
         setInterval(refreshTime,1000);
     </script>  
-</body>
-</html>

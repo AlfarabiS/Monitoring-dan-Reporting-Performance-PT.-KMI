@@ -2,19 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use DateTime;
 use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Report;
 use App\Models\OnGoing;
 use App\Models\Process;
+use App\Models\Standard;
 use App\Models\Warehouse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
-
 {
     public function __construct(){
         date_default_timezone_set("Asia/Jakarta");
@@ -62,6 +64,7 @@ class UserController extends Controller
 
     public function checkin(Request $request){
         
+        Session::put('process_id',$request->process_id);
 
         OnGoing::UpdateOrCreate([
             'NIK' => Auth::user()->NIK],[
@@ -73,15 +76,15 @@ class UserController extends Controller
             'keterangan'=>$request->details
         ]);        
         
-        // $dataOnGoing = $request->all();
-
         return view('/user/checkout',[
             'ActiveUser' => Auth::user()->name,
             'NIK' => Auth::user()->NIK,
             'process_id' => $request->process_id,
             'gudang_id' => $request->gudang_id,
-            'time_start' => $request->time_start,
-            'details' => $request->details
+            'time_start' => date("h:i:s"),
+            'details' => $request->details,
+            'hold_start' => '00:00:00',
+            'hold_end' => '00:00:00',
         ]);
     }
     
@@ -89,7 +92,7 @@ class UserController extends Controller
 
         // dd($test);
         return view('/user/checkout',[
-            // 'ActiveUser' => Auth::user()->name,
+            'ActiveUser' => Auth::user()->name,
             // 'process_id' => '5',
             // 'gudang_id' => Auth::user()->gudang_id,
             // 'test' => $test->process_id,
@@ -100,30 +103,40 @@ class UserController extends Controller
 
     public function checkout(Request $request){
 
-        date_default_timezone_set("Asia/Jakarta");
+        Session::forget('process_id');
+        // Standar untuk perbandingan 
+        $std = Standard::where('process_id',$request->process_id)->select('qty','time')->first();
+        $std_qty = $std->qty;
+        $std_time = (strtotime($std->time) - strtotime('00:00:00'));
 
         $time_start_raw = $request->time_start;
+        $time_end_raw = date("h:i:s");
         $time_start = strtotime($time_start_raw);
-        $time_end = strtotime($request->time_end);
+        $time_end = strtotime($time_end_raw);
+
+        $hold_start = strtotime($request->hold_start);
+        $hold_end = strtotime($request->hold_end);
+        $hold_time = ($hold_end - $hold_start);
     
-        $total_time = ($time_end - $time_start);
+        $total_time = ($time_end - $time_start) - $hold_time;
         $qty = $request->qty;
-        $std = 
-    
-        $performance = $qty / $total_time;
-        // @if
-    
-        // @endif
-    
+        $dt = new DateTime("@$total_time");
+
+        // dd($dt->format('H:i:s'));
+         
         
-        DB::table('on_goings')
-            ->where('time_start',$time_start_raw)
+
+            $performance = ($qty / $total_time) / ($std_qty / $std_time) * 100;
+
+            
+        OnGoing::where('NIK', Auth::user()->NIK,)
             ->update([
                 'process_id'=>'Idle',
-                'time_end'=>$request->time_end,
+                'time_end'=>date("h:i:s"),
                 'active'=>0,
                 'keterangan'=>''
             ]);
+        
         
         Report::Create([
             'NIK' => Auth::user()->NIK,
@@ -131,40 +144,21 @@ class UserController extends Controller
             'gudang_id' => $request->gudang_id,
             'reports_time' => date('Y-m-d H:i:s'),
             'performance' => $performance,
-            'keterangan' => $request->details
+            'keterangan' => $request->details,
+            'qty' => $qty,
+            'work_time' => $dt->format('H:i:s')
         ]);
 
 
-        // return view('/user/checkin');
         return redirect('/user');
+        // return view('/user/checkin');
 
-        // $time_start_raw = $request->time_start;
-        // $time_start = strtotime($request->time_start);
-        // $time_end = strtotime($request->time_end);
-        // $hold_start = strtotime($request->hold_start);
-        // $hold_end = strtotime($request->hold_end);
-    
-        // $total_time = ($time_end - $time_start) - ($hold_start - $hold_end);
-        // $qty = $request->qty;
-    
-        // $performance = $qty / $total_time;
-
-        // DB::table('on_goings')
-        // ->where('time_start',$time_start_raw)
-        // ->update([
-        //     'time_end'=>$request->time_end,
-        //     'active'=>0
-        // ]);
-
-        // DB::table('reports')->insert([
-        //     'NIK' => Auth::user()->NIK,
-        //     'process_id' => $request->process_id,
-        //     'gudang_id' => $request->gudang_id,
-        //     'performance' => $performance
-        // ]);
+       
     }
 
     public function hold(Request $request){
+
+        // dd(Session::get('process_id'));
 
         return view('/user/hold',[
             'ActiveUser' => Auth::user()->name,
@@ -179,13 +173,12 @@ class UserController extends Controller
 
     public function holdStart(Request $request){
 
-        $time_start_raw = $request->time_start;
 
         DB::table('on_goings')
             ->where('NIK',Auth::user()->NIK)
             ->update([
                 'process_id'=>'Hold',
-                'keterangan' => $request->keterangan
+                'keterangan' => 'Hold ('.$request->keterangan.')'
             ]);
 
         return view('/user/hold_finish',[
@@ -194,23 +187,20 @@ class UserController extends Controller
             'process_id' => $request->process_id,
             'gudang_id' => $request->gudang_id,
             'time_start' => $request->time_start,
-            'hold_start' => $request->hold_start,
+            'hold_start' => date("h:i:s"),
             'details' => $request->details,
             'keterangan' => $request->keterangan
         ]);
-
     }
     
     public function holdFinish(Request $request){
 
           
-        // $dataOnGoing = $request->all();
-
         DB::table('on_goings')
         ->where('NIK',Auth::user()->NIK)
         ->update([
             'process_id'=>$request->process_id,
-            'keterangan' => $request->details.' Hold ('.$request->keterangan.')'
+            'keterangan' => $request->details.' HOLD ( '. $request->keterangan. ' )'
         ]);
 
         return view('/user/checkout',[
@@ -221,9 +211,7 @@ class UserController extends Controller
             'time_start' => $request->time_start,
             'details' => $request->details,
             'hold_start' => $request->hold_start,
-            'hold_end' => $request->hold_end,
+            'hold_end' => date("h:i:s"),
         ]);
-
     }
-
 }

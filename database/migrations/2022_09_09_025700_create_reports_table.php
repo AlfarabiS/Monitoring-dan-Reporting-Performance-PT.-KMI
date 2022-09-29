@@ -19,8 +19,10 @@ return new class extends Migration
             $table->string('process_id');
             $table->string('gudang_id');
             $table->datetime('reports_time');
+            $table->integer('qty');
+            $table->time('work_time');
             $table->float('performance');
-            $table->text('keterangan')->nullable;
+            $table->string('keterangan')->nullable;
             $table->timestamps();
         });
     }

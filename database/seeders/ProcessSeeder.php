@@ -19,10 +19,16 @@ class ProcessSeeder extends Seeder
     {
 
         // Process::factory(10)->create();
-        DB::table('processes')->insert([
-            'process_name'=> 'Loading',
-            'process_id'=> 'FG-Loading',
-            'gudang_id'=> 'FG'
+        Process::create([
+            'process_name'=> 'Idle',
+            'process_id'=> 'Idle',
+            'gudang_id'=> ''
+        ]);
+
+        Process::Create([
+            'process_name'=> 'Hold',
+            'process_id'=> 'Hold',
+            'gudang_id'=> ''
         ]);
 
     }

@@ -13,16 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('on_goings', function (Blueprint $table) {
+        Schema::create('standards', function (Blueprint $table) {
             $table->id();
-            $table->string('NIK')->unique;
-            $table->string('process_id');
-            $table->string('gudang_id');
-            $table->time('time_start');
-            $table->time('time_end')->nullable;
-            $table->boolean('active');
-            $table->string('keterangan')->nullable;
             $table->timestamps();
+            $table->string('process_id')->unique;
+            $table->integer('qty');
+            $table->time('time');
         });
     }
 
@@ -33,7 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('on_goings');
+        Schema::dropIfExists('standards');
     }
-
 };

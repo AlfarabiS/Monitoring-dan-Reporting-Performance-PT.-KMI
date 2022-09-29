@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Process;
+use App\Models\Standard;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -82,6 +83,9 @@ class SuperadminController extends Controller
             # code...
         }
         User::where('id','=',$request->id_user)->delete();
+
+        return back();
+
     }
     
 
@@ -100,10 +104,13 @@ class SuperadminController extends Controller
             'judul'=> 'Halaman Edit User',
             'ProcessId'=>'',
             'ProcessName'=>'',
+            'Qty'=>'',
+            'Time'=>''
         ]);
     }
     public function editProses(Request $request){
-        $process_identity = Process::where('process_id',$request->id_proses)->first();
+        $process = Process::where('process_id',$request->id_proses)->first();
+        $standard = Standard::where('process_id',$request->id_proses)->first();
         // $identity = $identity_raw->toArray();
 
         // dd($process_identity);
@@ -111,7 +118,9 @@ class SuperadminController extends Controller
             'ActiveUser' => Auth::user()->name,
             'judul'=> 'Halaman Edit User',
             'ProcessId'=>$request->id_proses,
-            'ProcessName'=>$process_identity->process_name,
+            'ProcessName'=>$process->process_name,
+            'Qty'=>$standard->qty,
+            'Time'=>$standard->time
 
         ]);
         
@@ -131,9 +140,27 @@ class SuperadminController extends Controller
             'process_name'=>$request->process_name,
             'gudang_id'=>$request->gudang_id,
         ]);
-        
+        if ($request->qty) {
+            # code...
+            Standard::UpdateOrCreate([
+                'process_id'=>$request->process_id],[
+                'qty'=>$request->qty,
+                'time'=>$request->time                
+            ]);
+        }
         
         return redirect('/administrator/proses/');
 
+    }
+
+    public function prosesDelete(Request $request){
+        
+        // dd($request);
+        if ($request) {
+            # code...
+        }
+        Process::where('process_id','=',$request->id_proses)->delete();
+        
+        return back();
     }
 }
