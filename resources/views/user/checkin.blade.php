@@ -11,7 +11,7 @@
             <form action="/user/checkin" method="POST">
                 @csrf
                 {{-- INPUT WAKTU OTOMATIS GETTIME BLM--}}
-                <input type="hidden" id="time-start" name="time_start" value="" />
+                {{-- <input type="hidden" id="time-start" name="time_start" value="" /> --}}
                 @foreach ($Processes as $item)
                     <input  type="hidden" name="gudang_id" value="{{ $item->gudang_id }}">
                 @endforeach
@@ -26,7 +26,7 @@
                 </div>
                     <div class="mx-auto ">
                         <label class="label" for="details">Detail</label>
-                        <textarea class="textarea" name="details" id="" cols="30" rows="5" placeholder="" required></textarea>
+                        <textarea class="textarea" name="detail_proses" id="" cols="30" rows="5" placeholder="" required></textarea>
                     </div>
                 <div class="flex items-center justify-center mt-5">
                     @if (Session::has('process_id'))

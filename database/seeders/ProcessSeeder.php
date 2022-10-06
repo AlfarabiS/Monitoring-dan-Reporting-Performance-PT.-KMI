@@ -19,15 +19,21 @@ class ProcessSeeder extends Seeder
     {
 
         // Process::factory(10)->create();
-        Process::create([
-            'process_name'=> 'Idle',
-            'process_id'=> 'Idle',
-            'gudang_id'=> ''
-        ]);
+        // Process::create([
+        //     'process_name'=> 'Idle',
+        //     'process_id'=> 'Idle',
+        //     'gudang_id'=> ''
+        // ]);
 
+        // Process::Create([
+        //     'process_name'=> 'Hold',
+        //     'process_id'=> 'Hold',
+        //     'gudang_id'=> ''
+        // ]);
+        
         Process::Create([
-            'process_name'=> 'Hold',
-            'process_id'=> 'Hold',
+            'process_name'=> 'Lain-lain',
+            'process_id'=> 'LL',
             'gudang_id'=> ''
         ]);
 

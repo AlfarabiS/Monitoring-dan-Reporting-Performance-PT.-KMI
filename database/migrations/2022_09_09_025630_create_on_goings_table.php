@@ -21,7 +21,7 @@ return new class extends Migration
             $table->time('time_start');
             $table->time('time_end')->nullable;
             $table->boolean('active');
-            $table->string('keterangan')->nullable;
+            $table->text('keterangan')->nullable;
             $table->timestamps();
         });
     }

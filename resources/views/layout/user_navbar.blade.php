@@ -13,6 +13,20 @@
 
             <div class="flex flex-wrap">
                 <ul class="list-reset flex justify-between items-center">
+                    <li class="ml-auto">
+                        <form action="/user/account" method="post">
+                            @csrf
+                            @if (Session::has('process_id'))
+                                <button class="w-full flex p-2 text-base font-normal rounded-lg text-white hover:bg-gray-700 dark:hover:bg-gray-700" disabled>                       
+                            @else
+                                <button class="w-full flex p-2 text-base font-normal rounded-lg text-white hover:bg-gray-700 dark:hover:bg-gray-700" >   
+                            @endif 
+                                <span class="flex-1  whitespace-nowrap">
+                                    Account<i class="ml-1 fa fa-user fa-2xs"></i></span>
+                                </span>
+                            </button>
+                        </form>
+                    </li>
                     <li>
                         <form action="/logout" method="POST">
                             @csrf
@@ -28,7 +42,6 @@
                             </button>
                          </form>
                      </li>
-                                       
                 </ul>
             </div>
         </div>

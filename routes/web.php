@@ -18,7 +18,7 @@ use App\Http\Controllers\SuperadminController;
 */
 //Login Route
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
-Route::get('/', [LoginController::class, 'index'])->name('login')->middleware('guest');
+// Route::get('/', [LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/login', [LoginController::class, 'authenticate']);
 Route::post('/logout', [LoginController::class, 'logout']);
 
@@ -29,21 +29,25 @@ Route::get('/tracking/rm', [OnGoingController::class, 'rm'])->middleware('isAdmi
 Route::get('/tracking/pm', [OnGoingController::class, 'pm'])->middleware('isAdmin','auth');
 Route::get('/dashboard', [OnGoingController::class, 'tracking'])->name('dashboard')->middleware('isAdmin','auth');
 Route::get('/dashboard/search', [OnGoingController::class, 'index'])->name('dashboard')->middleware('isAdmin','auth');
-
 Route::get('/report', [ReportController::class, 'index'])->middleware('isAdmin','auth');
+Route::get('/report/export', [ReportController::class, 'exportReport'])->middleware('isAdmin','auth');
 
 
 // Operator Route
 Route::get('/user', [UserController::class, 'index'])->middleware('auth','isActive');
-Route::get('/user/fg', [UserController::class, 'fg'])->middleware('auth');
-Route::get('/user/rm', [UserController::class, 'rm'])->middleware('auth');
-Route::get('/user/pm', [UserController::class, 'pm'])->middleware('auth');
-// Route::get('/user/checkout', [UserController::class, 'checkoutIndex'])->name('chekout')->middleware('auth');
+Route::post('/user/fg', [UserController::class, 'fg'])->middleware('auth');
+Route::post('/user/rm', [UserController::class, 'rm'])->middleware('auth');
+Route::post('/user/pm', [UserController::class, 'pm'])->middleware('auth');
+Route::get('/user/checkout', [UserController::class, 'checkoutIndex'])->name('chekout')->middleware('auth');
 Route::post('/user/checkin', [UserController::class, 'checkin'])->name('checkin')->middleware('auth');
 Route::post('/user/checkout', [UserController::class, 'checkout'])->middleware('auth');
 Route::post('/user/hold', [UserController::class, 'hold'])->middleware('auth');
+Route::get('/user/hold/running', [UserController::class, 'holdRunning'])->middleware('auth');
 Route::post('/user/hold/start', [UserController::class, 'holdStart'])->middleware('auth');
 Route::post('/user/hold/finish', [UserController::class, 'holdFinish'])->middleware('auth');
+Route::post('/user/account', [UserController::class, 'account'])->middleware('auth');
+Route::post('/user/account/post', [UserController::class, 'accountPost'])->middleware('auth');
+Route::get('/user/forget', [UserController::class, 'forget'])->middleware('auth');
 
 
 // Superadmin Route
@@ -61,7 +65,8 @@ Route::post('/administrator/proses/delete', [SuperadminController::class, 'prose
 // Route::post('/administrator/proses/post', [SuperadminController::class, 'editPost'])->middleware('isAdmin','auth');
 // Route::post('/administrator/user/add', [SuperadminController::class, ''])->middleware('isAdmin','auth');
 
-
+//Guest Route
+Route::get('/', [GuestController::class, 'index'] );
 
 Route::get('/testingan', function(){
     return view('/welcome');

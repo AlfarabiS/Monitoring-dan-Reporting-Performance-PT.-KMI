@@ -13,13 +13,11 @@
    </head>
    <body class="bg-slate-100 ">
 
-
-
       <div class="drawer mt-10">
          <input id="my-drawer" type="checkbox" class="drawer-toggle" />
          <div class="drawer-content">
-            <div class="ml-10 mt-5">
-               <div class="mb-10">
+            <div class="ml-10 mt-8">
+               <div class="mb-5">
                   <p class="text-3xl font-bold ">{{$judul}}</p>
                </div>
                
@@ -31,27 +29,27 @@
            <ul class="menu p-4 overflow-y-auto w-60 bg-gray-800 text-base-content">
              <!-- Sidebar content here -->
              <li>
+               <a href="/tracking/" class="flex items-center p-2 text-base font-normal  rounded-lg text-white hover:bg-gray-700 dark:hover:bg-gray-700">
+                  <span class="flex-1 ml-3 whitespace-nowrap">Tracking
+                  </span>
+                  <span><i class="fa fa-user font-white"></i></span>
+               </a>
+            </li>
+             <li>
                <a href="/tracking/fg" class="flex items-center p-2 text-base font-normal  rounded-lg text-white hover:bg-gray-700 dark:hover:bg-gray-700">
-                  <span class="flex-1 ml-3 whitespace-nowrap">Tracking FG</span>
+                  <span class="flex-1 ml-3 whitespace-nowrap">Finish Good</span>
                   <span><i class="fa fa-user font-white"></i></span>
                </a>
             </li>
             <li>
                <a href="/tracking/rm" class="flex items-center p-2 text-base font-normal  rounded-lg text-white hover:bg-gray-700 dark:hover:bg-gray-700">
-                  <span class="flex-1 ml-3 whitespace-nowrap">Tracking RM</span>
+                  <span class="flex-1 ml-3 whitespace-nowrap">Raw Material</span>
                   <span><i class="fa fa-user font-white"></i></span>
                </a>
             </li>
             <li>
                <a href="/tracking/pm" class="flex items-center p-2 text-base font-normal  rounded-lg text-white hover:bg-gray-700 dark:hover:bg-gray-700">
-                  <span class="flex-1 ml-3 whitespace-nowrap">Tracking PM</span>
-                  <span><i class="fa fa-user font-white"></i></span>
-               </a>
-            </li>
-            <li>
-               <a href="/tracking/" class="flex items-center p-2 text-base font-normal  rounded-lg text-white hover:bg-gray-700 dark:hover:bg-gray-700">
-                  <span class="flex-1 ml-3 whitespace-nowrap">Tracking
-                  </span>
+                  <span class="flex-1 ml-3 whitespace-nowrap">Packaging Material</span>
                   <span><i class="fa fa-user font-white"></i></span>
                </a>
             </li>
@@ -81,8 +79,6 @@
            </ul>
          </div>
        </div>
-  
-   
-      
+ 
       </body>
    </html>

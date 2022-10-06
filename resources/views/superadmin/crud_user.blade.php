@@ -20,21 +20,17 @@
             <input type="text" name="NIK" placeholder="NIK" value="{{$NIK}}" class="input input-bordered w-full max-w-xs " required>
         </div>
         <div class="form-control w-full max-w-xs">
-            <div class="flex">
-                <div class="mr-2">
-                    <label class="label">
-                        <span class="label-text">Username</span>
-                    </label>
-                    <input type="email" name="email" placeholder="Username" value="{{$Email}}"  class="input input-bordered w-full max-w-xs " required>
-                </div>
-                <div class="ml-2">
-                    <label class="label">
-                        <span class="label-text">Password</span>
-                        </label>
-                        <input type="password" name="password" placeholder="" value="" class="input input-bordered w-full max-w-xs " required>
-                </div>
-            </div>
+            <label class="label">
+            <span class="label-text">Password</span>
+            </label>
+            <input type="pass" name="password" placeholder="password" value="" class="input input-bordered w-full max-w-xs " required>
         </div>
+        {{-- <div class="form-control w-full max-w-xs">
+                    <label class="label">
+                        <span class="label-text">Email</span>
+                    </label>
+                    <input type="email" name="email" placeholder="Email" value="{{$Email}}"  class="input input-bordered w-full max-w-xs " required>
+        </div> --}}
         <div class="form-control w-full max-w-xs">
             <label class="label">
             <span class="label-text">Lokasi</span>
@@ -47,7 +43,7 @@
         </div>
         <div class="form-control w-full max-w-xs">
             <label class="label">
-            <span class="label-text">Lokasi</span>
+            <span class="label-text">Role</span>
             </label>
             <select class="select select-bordered w-full max-w-xs" name="role" id="" required>
                 <option value="0">Operator</option>

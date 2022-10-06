@@ -79,7 +79,7 @@ class OnGoingController extends Controller
 
     public function tracking(){
 
-        $Users = OnGoing::Sortable('name')->paginate(10);
+        $Users = OnGoing::Sortable('name')->get();
         
         return view('/admin/tracking1',[
             'ActiveUser' => Auth::user()->name,

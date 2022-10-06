@@ -13,16 +13,19 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('session_tables', function (Blueprint $table) {
             $table->id();
             $table->string('NIK')->unique();
-            $table->string('name');
-            $table->string('email')->unique()->nullable();
+            $table->string('process_id');
             $table->string('gudang_id');
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->boolean('is_admin');
-            $table->rememberToken();
+            $table->time('time_start')->nullable();
+            $table->time('time_end')->nullable();
+            $table->time('hold_start')->nullable();
+            $table->time('hold_end')->nullable();
+            $table->text('keterangan')->nullable();
+            $table->boolean('hold_status');
+            $table->integer('hold_count');
+            $table->time('holdtime')->nullable();
             $table->timestamps();
         });
     }
@@ -34,6 +37,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('session_tables');
     }
 };

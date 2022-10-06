@@ -38,7 +38,7 @@
             {{-- <p>{{$Status->process_name}}</p> --}}
         </tbody>
     </table>
-    {{ $Users->onEachSide(1)->links() }}
+    {{-- {{ $Users->onEachSide(1)->links() }} --}}
 </div>  
         
 @endsection

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Satuan;
 use App\Models\Process;
 use App\Models\Standard;
 use Illuminate\Http\Request;
@@ -23,7 +24,7 @@ class SuperadminController extends Controller
     public function user(){
         return view('/superadmin/user',[
             'ActiveUser' => Auth::user()->name,
-            'judul'=> 'Halaman Edit User',
+            'judul'=> 'Halaman User',
             'Users'=> User::Sortable()->get(),
         ]);
     }
@@ -55,7 +56,6 @@ class SuperadminController extends Controller
             'Email'=>$identity->email,
             'NIK'=>$identity->NIK,
             'Gudang'=>$identity->gudang_id,
-            'Password'=>$identity->password
         ]);
     }
 
@@ -93,41 +93,41 @@ class SuperadminController extends Controller
     public function proses(){
         return view('/superadmin/proses',[
             'ActiveUser' => Auth::user()->name,
-            'judul'=> 'Halaman Edit Proses',
+            'judul'=> 'Halaman Proses',
             'Processes'=> Process::Sortable()->paginate(10),
         ]);
     }
     
     public function addProses(){
+        $Satuan = Satuan::all();
+
+
         return view('/superadmin/crud_proses',[
             'ActiveUser' => Auth::user()->name,
-            'judul'=> 'Halaman Edit User',
+            'judul'=> 'Halaman Tambah Proses',
             'ProcessId'=>'',
             'ProcessName'=>'',
             'Qty'=>'',
             'Time'=>''
-        ]);
-    }
+            ])->with('Satuan',$Satuan);
+        }
     public function editProses(Request $request){
         $process = Process::where('process_id',$request->id_proses)->first();
         $standard = Standard::where('process_id',$request->id_proses)->first();
+        $Satuan = Satuan::get();
         // $identity = $identity_raw->toArray();
 
         // dd($process_identity);
         return view('/superadmin/crud_proses',[
             'ActiveUser' => Auth::user()->name,
-            'judul'=> 'Halaman Edit User',
+            'judul'=> 'Halaman Edit Proses',
             'ProcessId'=>$request->id_proses,
             'ProcessName'=>$process->process_name,
             'Qty'=>$standard->qty,
             'Time'=>$standard->time
 
-        ]);
-        
-        // return view('/superadmin/crud_proses',[
-        //     'ActiveUser' => Auth::user()->name,
-        //     'judul'=> 'Halaman Edit Proses',
-        // ]);
+        ])->with('Satuan',$Satuan);
+
     }
 
     public function prosesPost(Request $request){

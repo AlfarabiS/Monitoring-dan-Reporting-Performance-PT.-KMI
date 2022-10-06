@@ -18,7 +18,7 @@ class LoginController extends Controller
 
     public function authenticate(Request $request){
         $validated_request = $request->validate([
-            'email'=>['required', 'email'],
+            'NIK'=>['required'],
             'password'=>['required']
         ]);
 
@@ -28,7 +28,17 @@ class LoginController extends Controller
             
              return redirect()->intended('dashboard');
         }
+
+        Auth::logoutOtherDevices();
+
         return back();        
+    }
+
+    protected function authenticated(Request $request, $user) 
+    {   
+    Auth::logoutOtherDevices($request('password'));
+
+    return redirect()->intended();
     }
 
     public function logout(Request $request){
@@ -38,6 +48,6 @@ class LoginController extends Controller
      
         $request->session()->regenerateToken();
      
-        return redirect('/');
+        return redirect('/login');
     }
 }

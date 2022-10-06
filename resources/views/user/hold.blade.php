@@ -10,14 +10,14 @@
         <div class="flex justify-center mt-0">
             <form action="/user/hold/start" method="POST">
                 @csrf
-                <input type="hidden" name="time_start" value="{{$time_start}}">
+                {{-- <input type="hidden" name="time_start" value="{{$time_start}}">
                 <input type="hidden" name="process_id" value="{{$process_id}}">
                 <input type="hidden" name="gudang_id" value="{{$gudang_id}}">
                 <input type="hidden" name="details" value="{{$details}}">
-                <input type="hidden" id="hold-start" name="hold_start" value="" />
+                <input type="hidden" id="hold-start" name="hold_start" value="" /> --}}
                 <div class="mx-auto mb-3">
                     <label class="label text-center font-semibold" for="qty">Keterangan</label>
-                    <textarea class="textarea" name="keterangan" id="" cols="25" rows="5" placeholder="Keterangan Hold Proses"></textarea>
+                    <textarea class="textarea" name="detail_hold" id="" cols="25" rows="5" placeholder="Keterangan Hold Proses"></textarea>
                 </div>
                 <div class="flex items-center justify-center">
                     <button type="submit" class="w-40 text-white bg-green-500 hover:bg-green-600 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 hover:scale-105 transition" onclick="document.getElementById('hold-start').value = waktu"> 

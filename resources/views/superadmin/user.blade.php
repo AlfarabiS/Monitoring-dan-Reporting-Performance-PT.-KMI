@@ -26,7 +26,7 @@
               <th class="w-2 border text-center whitespace-nowrap">No</th>
               <th class="w-10 border text-center whitespace-nowrap">@sortablelink('name','Nama')</th>
               <th class="w-10 border text-center whitespace-nowrap">@sortablelink('NIK','NIK')</th>
-              <th class="w-10 border text-center whitespace-nowrap">@sortablelink('email','Email')</th>
+              {{-- <th class="w-10 border text-center whitespace-nowrap">@sortablelink('email','Email')</th> --}}
               <th class="w-10 border text-center whitespace-nowrap">@sortablelink('gudang_id','Lokasi')</th>    
               <th class="border text-center	w-10 whitespace-nowrap">Action</th>        
       </thead>
@@ -37,7 +37,7 @@
               <td class=" border  text-center whitespace-nowrap">{{ $loop->iteration }}</td>
               <td class=" border  text-center whitespace-nowrap">{{ $user->name }}</td>
               <td class=" border  text-center whitespace-nowrap">{{ $user->NIK }}</td>                
-              <td class=" border  text-center whitespace-nowrap">{{ $user->email }}</td>                
+              {{-- <td class=" border  text-center whitespace-nowrap">{{ $user->email }}</td>                 --}}
               <td class=" border  text-center whitespace-nowrap">{{ $user->gudang_id }}</td>                 
               <td class=" border  text-center whitespace-nowrap">
                 <div class="flex">    

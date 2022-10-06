@@ -13,12 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('standards', function (Blueprint $table) {
+        Schema::create('satuans', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('process_id')->unique();
-            $table->integer('qty');
-            $table->time('time');
+            $table->string('satuan')->unique;
         });
     }
 
@@ -29,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('standards');
+        Schema::dropIfExists('satuans');
     }
 };

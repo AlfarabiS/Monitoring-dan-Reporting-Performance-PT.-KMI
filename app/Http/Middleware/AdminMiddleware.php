@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class AdminMiddleware
 {
@@ -20,6 +21,9 @@ class AdminMiddleware
         if (Auth::user()->is_admin == 1){
             return $next($request);
           } else {
+            if (Session::has('process')) {
+              return redirect('/user/checkout');
+            }
             return redirect()->intended('/user');
           }
     }

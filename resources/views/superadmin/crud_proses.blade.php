@@ -39,9 +39,19 @@
                 </div>
                 <div class="ml-2">
                     <label class="label">
+                        <span class="label-text">Satuan</span>
+                        </label>
+                    <select class="select select-bordered  max-w-xs" name="satuan">
+                        @foreach ($Satuan as $satuan)
+                            <option value="{{$satuan->satuan}}">{{$satuan->satuan}}</option>
+                        @endforeach        
+                    </select>
+                </div>
+                <div class="ml-2">
+                    <label class="label">
                         <span class="label-text">Waktu</span>
                         </label>
-                        <input type="text" class="input input-bordered w-full max-w-xs" name="time" id="" placeholder="00:00:00" value="{{$Time}}">
+                        <input type="text" class="input input-bordered w-full max-w-xs" name="time" id="" placeholder="Menit" value="{{$Time}}">
                 </div>
             </div>
         </div>

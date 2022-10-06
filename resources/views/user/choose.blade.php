@@ -18,7 +18,7 @@
         <h1 id="time"></h1>
         </div>
         <div class="flex items-center justify-center ">
-            <form action="/user/fg">
+            <form action="/user/fg" method="POST">
                 @csrf
                 <input type="hidden" name="gudang" value="gudang_id">
                 <div class="flex items-center justify-center">
@@ -30,7 +30,7 @@
         </div>
         <div class="container px-10  bg-slate-200 mx-auto mt-5"> 
     
-            <form action="/user/rm">
+            <form action="/user/rm" method="POST">
             @csrf
                 <input type="hidden" name="gudang" value="gudang_id">
                 <div class="flex items-center justify-center">
@@ -42,7 +42,7 @@
         </div>
         <div class="container px-10  bg-slate-200 mx-auto mt-5"> 
     
-            <form action="/user/pm">
+            <form action="/user/pm" method="POST">
                 @csrf
                 <input type="hidden" name="gudang" value="gudang_id">
                 <div class="flex items-center justify-center">
