@@ -40,5 +40,12 @@
     </table>
     {{-- {{ $Users->onEachSide(1)->links() }} --}}
 </div>  
-        
+
+<script type="text/javascript">
+    function load()
+    {
+    setTimeout("window.open(self.location, '_self');", 5*60000);
+    }
+</script>
+    <body onload="load()">       
 @endsection

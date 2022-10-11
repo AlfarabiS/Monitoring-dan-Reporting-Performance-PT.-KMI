@@ -29,32 +29,32 @@
            <ul class="menu p-4 overflow-y-auto w-60 bg-gray-800 text-base-content">
              <!-- Sidebar content here -->
              <li>
-               <a href="/tracking/" class="flex items-center p-2 text-base font-normal  rounded-lg text-white hover:bg-gray-700 dark:hover:bg-gray-700">
+               <a href="/admin/tracking/" class="flex items-center p-2 text-base font-normal  rounded-lg text-white hover:bg-gray-700 dark:hover:bg-gray-700">
                   <span class="flex-1 ml-3 whitespace-nowrap">Tracking
                   </span>
                   <span><i class="fa fa-user font-white"></i></span>
                </a>
             </li>
              <li>
-               <a href="/tracking/fg" class="flex items-center p-2 text-base font-normal  rounded-lg text-white hover:bg-gray-700 dark:hover:bg-gray-700">
+               <a href="/admin/tracking/fg" class="flex items-center p-2 text-base font-normal  rounded-lg text-white hover:bg-gray-700 dark:hover:bg-gray-700">
                   <span class="flex-1 ml-3 whitespace-nowrap">Finish Good</span>
                   <span><i class="fa fa-user font-white"></i></span>
                </a>
             </li>
             <li>
-               <a href="/tracking/rm" class="flex items-center p-2 text-base font-normal  rounded-lg text-white hover:bg-gray-700 dark:hover:bg-gray-700">
+               <a href="/admin/tracking/rm" class="flex items-center p-2 text-base font-normal  rounded-lg text-white hover:bg-gray-700 dark:hover:bg-gray-700">
                   <span class="flex-1 ml-3 whitespace-nowrap">Raw Material</span>
                   <span><i class="fa fa-user font-white"></i></span>
                </a>
             </li>
             <li>
-               <a href="/tracking/pm" class="flex items-center p-2 text-base font-normal  rounded-lg text-white hover:bg-gray-700 dark:hover:bg-gray-700">
+               <a href="/admin/tracking/pm" class="flex items-center p-2 text-base font-normal  rounded-lg text-white hover:bg-gray-700 dark:hover:bg-gray-700">
                   <span class="flex-1 ml-3 whitespace-nowrap">Packaging Material</span>
                   <span><i class="fa fa-user font-white"></i></span>
                </a>
             </li>
             <li>
-               <a href="/report" class="flex items-center p-2 text-base font-normal  rounded-lg text-white hover:bg-gray-700 dark:hover:bg-gray-700">                        
+               <a href="/admin/report" class="flex items-center p-2 text-base font-normal  rounded-lg text-white hover:bg-gray-700 dark:hover:bg-gray-700">                        
                   <span class="flex-1 ml-3 whitespace-nowrap">Report</span>
                   <span><i class="fa fa-book-open font-white"></i></span>
                </a>
@@ -62,7 +62,7 @@
             <li>
                <a href="/administrator" class="flex items-center p-2 text-base font-normal  rounded-lg text-white hover:bg-gray-700 dark:hover:bg-gray-700">                        
                   <span class="flex-1 ml-3 whitespace-nowrap">Administrator</span>
-                  <span><i class="fa fa-book-open font-white"></i></span>
+                  <span><i class="fa fa-lock font-white"></i></span>
                </a>
             </li>
             <li>

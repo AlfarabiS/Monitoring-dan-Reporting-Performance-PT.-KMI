@@ -1,7 +1,7 @@
-@extends('layout.user_layout')
+@include('layout.user_layout')
 
-<body class="bg-slate-100">
 @include('layout.user_navbar')
+<body class="bg-slate-100">
     <div class="container px-10 py-10 bg-slate-200 mx-auto mt-32"> 
         <div class="flex items-center justify-center font-bold text-xl">
             <h1 id="time"></h1>

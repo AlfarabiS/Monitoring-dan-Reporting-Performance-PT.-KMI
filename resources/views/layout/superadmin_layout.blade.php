@@ -104,7 +104,13 @@
            </li>
            <li>
               <a href="/administrator/proses" class="flex items-center p-2 text-base font-normal  rounded-lg text-white hover:bg-gray-700 dark:hover:bg-gray-700">
-                 <span class="flex-1 ml-3 whitespace-nowrap">proses</span>
+                 <span class="flex-1 ml-3 whitespace-nowrap">Proses</span>
+                 <span><i class="fa fa-spinner font-white"></i></span>
+              </a>
+           </li>
+           <li>
+              <a href="/administrator/satuan" class="flex items-center p-2 text-base font-normal  rounded-lg text-white hover:bg-gray-700 dark:hover:bg-gray-700">
+                 <span class="flex-1 ml-3 whitespace-nowrap">Satuan</span>
                  <span><i class="fa fa-spinner font-white"></i></span>
               </a>
            </li>
@@ -114,6 +120,7 @@
                  <span><i class="fa-solid fa-chart-line"></i></span>
               </a>
            </li>
+           {{-- <div class="divider">----</div>  --}}
            <li>
               <form action="/logout" method="POST">
                  @csrf

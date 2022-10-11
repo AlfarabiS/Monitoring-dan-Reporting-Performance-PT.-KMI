@@ -19,9 +19,15 @@
                             
                           </label>
                     </span>
+                    @if (Auth::check())
                     <span class=" text-xl ml-3 mt-2.5">
                         Hi, {{ $ActiveUser }}
                     </span>
+                    @else
+                    <span class=" text-xl ml-3 mt-2.5">
+                        Silahkan Login
+                    </span>
+                    @endif
                 {{-- </a> --}}
             </div>
 

@@ -33,11 +33,13 @@ class SuperadminController extends Controller
         return view('/superadmin/crud_user',[
             'ActiveUser' => Auth::user()->name,
             'judul'=> 'Halaman Tambah User',
+            'Edit' => 0,
             'Name'=>'',
             'Email'=>'',
             'NIK'=>'',
             'Gudang'=>'',
-            'Password'=>''
+            'Password'=>'',
+            'Role' => 0
         ]);
     }
 
@@ -48,29 +50,43 @@ class SuperadminController extends Controller
         $identity = User::find($request->id_user);
         // $identity = $identity_raw->toArray();
 
-        // dd($identity_raw);
+        // dd($identity->is_admin);
         return view('/superadmin/crud_user',[
             'ActiveUser' => Auth::user()->name,
             'judul'=> 'Halaman Edit User',
+            'Edit' => 1,
             'Name'=>$identity->name,
             'Email'=>$identity->email,
             'NIK'=>$identity->NIK,
             'Gudang'=>$identity->gudang_id,
+            'Role' => $identity->is_admin
         ]);
     }
 
     public function userPost(Request $request){
 
-        // dd($request);       
+        $User = User::where('NIK',$request->NIK)->first();
+        
+        // dd($request->password);
 
-        User::UpdateOrCreate([
-            'NIK'=>$request->NIK],[
-            'name'=>$request->name,
-            'email'=>$request->email,
-            'gudang_id'=>$request->gudang,
-            'password'=>bcrypt($request->password),
-            'is_admin'=>$request->role
-        ]);
+        if (is_null($request->password)) {
+            User::UpdateOrCreate([
+                'NIK'=>$request->NIK],[
+                'name'=>strtoupper($request->name),
+                'email'=>$request->email,
+                'gudang_id'=>$request->gudang,
+                'is_admin'=>$request->role
+            ]);
+        } else {
+            User::UpdateOrCreate([
+                'NIK'=>$request->NIK],[
+                'name'=>strtoupper($request->name),
+                'email'=>$request->email,
+                'gudang_id'=>$request->gudang,
+                'password'=>bcrypt($request->password),
+                'is_admin'=>$request->role
+            ]);
+        }
         
         return redirect('/administrator/user/');
 
@@ -111,10 +127,18 @@ class SuperadminController extends Controller
             'Time'=>''
             ])->with('Satuan',$Satuan);
         }
+
     public function editProses(Request $request){
         $process = Process::where('process_id',$request->id_proses)->first();
-        $standard = Standard::where('process_id',$request->id_proses)->first();
         $Satuan = Satuan::get();
+        $standard = Standard::where('process_id',$request->id_proses)->first();
+        if (!is_null($standard)) {
+            $standard_qty = $standard->qty;
+            $standard_time = $standard->time;
+        }else{ 
+            $standard_qty = 0;
+            $standard_time = 0;
+        }
         // $identity = $identity_raw->toArray();
 
         // dd($process_identity);
@@ -123,8 +147,8 @@ class SuperadminController extends Controller
             'judul'=> 'Halaman Edit Proses',
             'ProcessId'=>$request->id_proses,
             'ProcessName'=>$process->process_name,
-            'Qty'=>$standard->qty,
-            'Time'=>$standard->time
+            'Qty'=>$standard_qty,
+            'Time'=>$standard_time
 
         ])->with('Satuan',$Satuan);
 
@@ -145,7 +169,8 @@ class SuperadminController extends Controller
             Standard::UpdateOrCreate([
                 'process_id'=>$request->process_id],[
                 'qty'=>$request->qty,
-                'time'=>$request->time                
+                'time'=>$request->time,
+                'satuan'=>$request->satuan                
             ]);
         }
         
@@ -162,5 +187,45 @@ class SuperadminController extends Controller
         Process::where('process_id','=',$request->id_proses)->delete();
         
         return back();
+    }
+
+    // Satuan
+    public function satuan(){
+        $Satuans = Satuan::sortable()->get();
+        return view('Superadmin/satuan',[
+            'judul' => 'Halaman Satuan',
+            'ActiveUser' => Auth::user()->name,
+        ])->with('Satuans',$Satuans);
+    }
+
+    public function addSatuan(){
+
+        return view('/superadmin/crud_satuan',[
+            'ActiveUser' => Auth::user()->name,
+            'judul'=> 'Halaman Tambah Satuan',
+            'Satuan'=>'',
+            'Id' => ''
+            ]);
+        }
+
+    public function editSatuan(Request $request){
+        $Satuan = Satuan::find($request->id);
+
+        return view('/superadmin/crud_satuan',[
+            'ActiveUser' => Auth::user()->name,
+            'judul'=> 'Halaman Edit Satuan',
+            'Satuan'=> $Satuan->satuan,
+            'Id' => $Satuan->id
+            ]);
+    }
+
+    public function satuanPost(Request $request){
+
+        Satuan::UpdateOrCreate([
+            'id' => $request->id],[
+                'satuan' => $request->satuan
+            ]); 
+
+        return redirect('/administrator/satuan');
     }
 }

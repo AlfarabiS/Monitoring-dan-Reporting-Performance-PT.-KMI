@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\GuestController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\OnGoingController;
@@ -23,14 +24,14 @@ Route::post('/login', [LoginController::class, 'authenticate']);
 Route::post('/logout', [LoginController::class, 'logout']);
 
 // Dashboard Route
-Route::get('/tracking', [OnGoingController::class, 'tracking'])->middleware('isAdmin','auth');
-Route::get('/tracking/fg', [OnGoingController::class, 'fg'])->middleware('isAdmin','auth');
-Route::get('/tracking/rm', [OnGoingController::class, 'rm'])->middleware('isAdmin','auth');
-Route::get('/tracking/pm', [OnGoingController::class, 'pm'])->middleware('isAdmin','auth');
+Route::get('/admin/tracking', [OnGoingController::class, 'tracking'])->middleware('isAdmin','auth');
+Route::get('/admin/tracking/fg', [OnGoingController::class, 'fg'])->middleware('isAdmin','auth');
+Route::get('/admin/tracking/rm', [OnGoingController::class, 'rm'])->middleware('isAdmin','auth');
+Route::get('/admin/tracking/pm', [OnGoingController::class, 'pm'])->middleware('isAdmin','auth');
 Route::get('/dashboard', [OnGoingController::class, 'tracking'])->name('dashboard')->middleware('isAdmin','auth');
 Route::get('/dashboard/search', [OnGoingController::class, 'index'])->name('dashboard')->middleware('isAdmin','auth');
-Route::get('/report', [ReportController::class, 'index'])->middleware('isAdmin','auth');
-Route::get('/report/export', [ReportController::class, 'exportReport'])->middleware('isAdmin','auth');
+Route::get('/admin/report', [ReportController::class, 'index'])->middleware('isAdmin','auth');
+Route::get('/admin/report/export', [ReportController::class, 'exportReport'])->middleware('isAdmin','auth');
 
 
 // Operator Route
@@ -48,6 +49,8 @@ Route::post('/user/hold/finish', [UserController::class, 'holdFinish'])->middlew
 Route::post('/user/account', [UserController::class, 'account'])->middleware('auth');
 Route::post('/user/account/post', [UserController::class, 'accountPost'])->middleware('auth');
 Route::get('/user/forget', [UserController::class, 'forget'])->middleware('auth');
+Route::post('/user/invalid', [UserController::class, 'invalidIndex'])->middleware('auth');
+Route::post('/user/invalid/invalid', [UserController::class, 'invalid'])->middleware('auth');
 
 
 // Superadmin Route
@@ -62,11 +65,23 @@ Route::get('/administrator/proses/add', [SuperadminController::class, 'addProses
 Route::post('/administrator/proses/edit', [SuperadminController::class, 'editProses'])->middleware('isAdmin','auth');
 Route::post('/administrator/proses/post', [SuperadminController::class, 'prosesPost'])->middleware('isAdmin','auth');
 Route::post('/administrator/proses/delete', [SuperadminController::class, 'prosesDelete'])->middleware('isAdmin','auth');
+Route::get('/administrator/satuan', [SuperadminController::class, 'satuan'])->middleware('isAdmin','auth');
+Route::get('/administrator/satuan/add', [SuperadminController::class, 'addSatuan'])->middleware('isAdmin','auth');
+Route::post('/administrator/satuan/edit', [SuperadminController::class, 'editSatuan'])->middleware('isAdmin','auth');
+Route::post('/administrator/satuan/post', [SuperadminController::class, 'satuanPost'])->middleware('isAdmin','auth');
+Route::post('/administrator/satuan/delete', [SuperadminController::class, 'satuanDelete'])->middleware('isAdmin','auth');
 // Route::post('/administrator/proses/post', [SuperadminController::class, 'editPost'])->middleware('isAdmin','auth');
 // Route::post('/administrator/user/add', [SuperadminController::class, ''])->middleware('isAdmin','auth');
 
 //Guest Route
-Route::get('/', [GuestController::class, 'index'] );
+
+Route::get('/', [GuestController::class, 'index'])->middleware('guest');
+Route::get('/tracking', [GuestController::class, 'index'])->middleware('guest');
+Route::get('/tracking/fg', [GuestController::class, 'fg'])->middleware('guest');
+Route::get('/tracking/rm', [GuestController::class, 'rm'])->middleware('guest');
+Route::get('/tracking/pm', [GuestController::class, 'pm'])->middleware('guest');
+
+
 
 Route::get('/testingan', function(){
     return view('/welcome');

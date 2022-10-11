@@ -1,6 +1,4 @@
-@extends('layout.user_layout')
-
-
+@include('layout.user_layout')
 @include('layout.user_navbar')
 
     <div class="container px-10 py-10 bg-slate-200 mx-auto my-20"> 

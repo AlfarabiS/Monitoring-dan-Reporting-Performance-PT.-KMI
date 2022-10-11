@@ -37,7 +37,7 @@
                     </label>
                     <input type="number" name="qty" placeholder="00" value="{{$Qty}}"  class="input input-bordered w-full max-w-xs "    >
                 </div>
-                <div class="ml-2">
+                <div class="">
                     <label class="label">
                         <span class="label-text">Satuan</span>
                         </label>
@@ -51,7 +51,7 @@
                     <label class="label">
                         <span class="label-text">Waktu</span>
                         </label>
-                        <input type="text" class="input input-bordered w-full max-w-xs" name="time" id="" placeholder="Menit" value="{{$Time}}">
+                        <input type="number" class="input input-bordered w-full max-w-xs" name="time" id="" placeholder="Menit" value="{{$Time}}">
                 </div>
             </div>
         </div>

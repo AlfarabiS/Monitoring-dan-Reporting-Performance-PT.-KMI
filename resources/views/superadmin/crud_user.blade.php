@@ -19,12 +19,30 @@
             </label>
             <input type="text" name="NIK" placeholder="NIK" value="{{$NIK}}" class="input input-bordered w-full max-w-xs " required>
         </div>
-        <div class="form-control w-full max-w-xs">
+        @if ($Edit == 1)
+            
+        <div class="form-control  w-full max-w-xs">
+            <label class="label cursor-pointer">
+              <span class="label-text">Change Password</span> 
+              <input type="checkbox"  class="checkbox" id="checkboxPassword" onclick="changePassword()" >
+            </label>
+          </div>
+        <div class="form-control w-full max-w-xs" style="display:none" id="passwordField">
             <label class="label">
             <span class="label-text">Password</span>
             </label>
-            <input type="pass" name="password" placeholder="password" value="" class="input input-bordered w-full max-w-xs " required>
+            <input type="password" name="password" placeholder="password" value="" class="input input-bordered w-full max-w-xs ">
         </div>
+        @else
+        <div class="form-control w-full max-w-xs" >
+            <label class="label">
+            <span class="label-text">Password</span>
+            </label>
+            <input type="password" name="password" placeholder="password" value="" class="input input-bordered w-full max-w-xs " required>
+        </div>
+            
+        @endif
+
         {{-- <div class="form-control w-full max-w-xs">
                     <label class="label">
                         <span class="label-text">Email</span>
@@ -45,7 +63,7 @@
             <label class="label">
             <span class="label-text">Role</span>
             </label>
-            <select class="select select-bordered w-full max-w-xs" name="role" id="" required>
+            <select class="select select-bordered w-full max-w-xs" value="{{ $Role }}" name="role" id="" required>
                 <option value="0">Operator</option>
                 <option value="1">Admin</option>
             </select>
@@ -56,5 +74,22 @@
     </form>
 
 </div>
+
+<script>
+function changePassword(){
+    var checkbox = document.getElementById('checkboxPassword');
+    var password = document.getElementById('passwordField');
     
+    if (checkbox.checked == true){
+        password.style.display = "block";
+      } else {
+        password.style.display = "none";
+      }
+}
+
+
+
+</script>
+    
+
 @endsection

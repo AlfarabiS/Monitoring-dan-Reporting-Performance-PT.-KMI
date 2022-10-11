@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('gudang_id');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->boolean('logged_in')->nullable();
             $table->boolean('is_admin');
             $table->rememberToken();
             $table->timestamps();

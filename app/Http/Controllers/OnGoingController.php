@@ -33,7 +33,7 @@ class OnGoingController extends Controller
 
     public function fg()
     {
-        $Users = OnGoing::Sortable('name')->where('users.gudang_id','FG')->paginate(10);
+        $Users = OnGoing::Sortable('name')->where('users.gudang_id','FG')->get();
 
         return view('/admin/tracking',[
             'ActiveUser' => Auth::user()->name,
@@ -43,13 +43,14 @@ class OnGoingController extends Controller
             'Processes' => Process::where('gudang_id', 'FG')
                 ->orWhere('process_id', 'Idle ')
                 ->orWhere('process_id', 'Hold ')
+                ->orWhere('process_id', 'LL')
                 ->get()
         ])->with('Users',$Users);
     }
 
     public function rm()
     {
-        $Users = OnGoing::Sortable('name')->where('users.gudang_id','RM')->paginate(10);
+        $Users = OnGoing::Sortable('name')->where('users.gudang_id','RM')->get();
 
         return view('/admin/tracking',[
             'ActiveUser' => Auth::user()->name,
@@ -59,13 +60,14 @@ class OnGoingController extends Controller
             'Processes' => Process::where('gudang_id', 'RM')
             ->orWhere('process_id', 'Idle ')
             ->orWhere('process_id', 'Hold ')                
+            ->orWhere('process_id', 'LL')
             ->get()
         ])->with('Users',$Users);
     }
 
     public function pm()
     {
-        $Users = OnGoing::Sortable('name')->where('users.gudang_id','PM')->paginate(10);
+        $Users = OnGoing::Sortable('name')->where('users.gudang_id','PM')->get();
 
         return view('/admin/tracking',[
             'ActiveUser' => Auth::user()->name,
@@ -73,6 +75,7 @@ class OnGoingController extends Controller
             'Processes' => Process::where('gudang_id', 'PM')
                 ->orWhere('process_id', 'Idle ')
                 ->orWhere('process_id', 'Hold ')
+                ->orWhere('process_id', 'LL')
                 ->get()
         ])->with('Users',$Users);;
     }

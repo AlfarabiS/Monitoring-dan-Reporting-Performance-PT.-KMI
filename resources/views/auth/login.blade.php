@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{$judul}}</title>
+    <link rel="icon" href="/assets/img/kalbe-milko-logo.svg">
     @vite('resources/css/app.css')
     <link rel="stylesheet" href="assets/css/login.css">
 

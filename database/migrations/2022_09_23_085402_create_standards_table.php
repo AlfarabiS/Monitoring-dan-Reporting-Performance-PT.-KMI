@@ -18,7 +18,8 @@ return new class extends Migration
             $table->timestamps();
             $table->string('process_id')->unique();
             $table->integer('qty');
-            $table->time('time');
+            $table->integer('time');
+            $table->string('satuan');
         });
     }
 

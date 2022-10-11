@@ -3,8 +3,12 @@
 
 @section('content')
   
+  @if (session('alert'))
+    <div class="alert alert-success">
+        {{ session('alert') }}
+    </div>
+  @endif
 <div class="flex mb-2">
-  
   
   <span class="bg-green-400 h-10 w-10 ml-10 rounded-full transition">
     <a href="/administrator/user/add">

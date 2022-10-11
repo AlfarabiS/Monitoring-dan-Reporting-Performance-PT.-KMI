@@ -8,9 +8,6 @@
                     <span class="text-xl pl-2"><i class="em em-grinning"><span class="ml-3">Hi, {{$ActiveUser}}</span></i></span>
                 </a>
             </div>
-
-            
-
             <div class="flex flex-wrap">
                 <ul class="list-reset flex justify-between items-center">
                     <li class="ml-auto">
@@ -45,6 +42,5 @@
                 </ul>
             </div>
         </div>
-
     </nav>
 </header>

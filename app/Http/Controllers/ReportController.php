@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Report;
 use Illuminate\Http\Request;
 use App\Exports\ReportsExport;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreReportRequest;
@@ -30,25 +31,22 @@ class ReportController extends Controller
         $end = Carbon::parse($request->end_date);
         $nameFilter = $request->query('name');
         
-        if (!empty($nameFilter || $start && $end)){
+        if (is_null($request->name ) && is_null($request->start_date) && is_null($request->end_date) ){
+
+            $Report = Report::sortable('date')->paginate(15);    
+        }else{
             $Report = Report::sortable('date')
                     ->where('name','like','%'.$nameFilter.'%')
-                    ->Where(function($query) use ($start, $end){
-                        $query
-                        ->whereDate('reports_time','<=',$end->format('y-m-d'))
-                        ->whereDate('reports_time','>=',$start->format('y-m-d'));         
-                    })
-                    ->get();
-        }else{
-            $Report = Report::sortable('date')->paginate(15);    
+                    ->whereBetween(DB::raw('date(reports_time)'),[$start->format('y-m-d H:i:s'),$end->format('y-m-d H:i:s')])
+                    ->paginate(15);
         }
 
         return view('/admin/report',[
             'ActiveUser' => Auth::user()->name,
             'judul'=>'Report',
             'Users'=> User::where('is_admin','false')->get(),
-            'date_start' => $start->format('y-m-d'),
-            'date_end' =>  $end->format('y-m-d'),
+            'date_start' => $request->start_date,
+            'date_end' =>  $request->end_date,
             'name' => $nameFilter,
         ])->with('Report',$Report);
     }
@@ -59,11 +57,11 @@ class ReportController extends Controller
         $start = $request->date_start;
         $end = $request->date_end;
 
-        // dd($name);
+        // dd($request->date_start);
         if($name){
             return (new ReportsExport($name, $start, $end))->download('Report '.$name.' '.$start.' - '.$end.'.xlsx');
         }
-        return (new ReportsExport($name, $start, $end))->download('Reports '.$start.' - '.$end.'.xlsx');
-    
-    }
+            return (new ReportsExport($name, $start, $end))->download('Reports '.$start.' - '.$end.'.xlsx');
+            
+        }
 }

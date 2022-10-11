@@ -1,6 +1,4 @@
-@extends('layout.user_layout')
-
-
+@include('layout.user_layout')
 @include('layout.user_navbar')
 
 
